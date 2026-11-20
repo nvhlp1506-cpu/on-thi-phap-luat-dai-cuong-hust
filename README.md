@@ -3,7 +3,10 @@
 > **Web Game & Ứng Dụng Ôn Thi Đột Phá Cho Sinh Viên Đại Học Bách Khoa Hà Nội (HUST)**  
 > Trải nghiệm ôn thi Pháp Luật Đại Cương thông qua phong cách Web Game RPG Roguelike Vượt Ải Diệt Quái, hệ thống âm thanh sống động, bộ câu hỏi chuẩn hóa và Bảng Xếp Hạng Đua Top đồng bộ IP Cloud.
 
-🌐 **Trải Nghiệm Trực Tuyến:** [https://dau-truong-tri-thuc-hust.netlify.app/game](https://dau-truong-tri-thuc-hust.netlify.app/game)
+🌐 **Trải Nghiệm Trực Tuyến:**
+- **GitHub Pages:** [https://nvhlp1506-cpu.github.io/on-thi-phap-luat-dai-cuong-hust/](https://nvhlp1506-cpu.github.io/on-thi-phap-luat-dai-cuong-hust/)
+- **Đấu Trường 24 Ải (GitHub Pages):** [https://nvhlp1506-cpu.github.io/on-thi-phap-luat-dai-cuong-hust/dau-truong-tri-thuc.html](https://nvhlp1506-cpu.github.io/on-thi-phap-luat-dai-cuong-hust/dau-truong-tri-thuc.html)
+- **Bản Netlify:** [https://dau-truong-tri-thuc-hust.netlify.app/game](https://dau-truong-tri-thuc-hust.netlify.app/game)
 
 ---
 

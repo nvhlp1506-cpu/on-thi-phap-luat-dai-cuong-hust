@@ -2443,7 +2443,7 @@ class KnowledgeArenaEngine {
 
   getLeaderboardApiUrl() {
     if (typeof window !== "undefined") {
-      if (window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      if (window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname.includes("github.io")) {
         return "https://dau-truong-tri-thuc-hust.netlify.app/api/leaderboard";
       }
     }
