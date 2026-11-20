@@ -1,0 +1,26 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_12.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#3b0764'/>
+      <stop offset='100%' stop-color='#150326'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_12.svg)'/>
+  
+      <!-- Dragon Horns -->
+      <path d='M65,75 Q40,30 20,40 Q40,65 55,90' fill='#581c87' stroke='#e9d5ff' stroke-width='3'/>
+      <path d='M135,75 Q160,30 180,40 Q160,65 145,90' fill='#581c87' stroke='#e9d5ff' stroke-width='3'/>
+      <!-- Dragon Snout -->
+      <polygon points='100,60 135,100 120,145 80,145 65,100' fill='#9333ea' stroke='#c084fc' stroke-width='3'/>
+      <!-- Glowing Red Dragon Eyes -->
+      <polygon points='75,95 90,90 85,102' fill='#f43f5e'/>
+      <polygon points='125,95 110,90 115,102' fill='#f43f5e'/>
+      <!-- Nostrils smoking -->
+      <ellipse cx='92' cy='128' rx='4' ry='6' fill='#3b0764'/>
+      <ellipse cx='108' cy='128' rx='4' ry='6' fill='#3b0764'/>
+      <!-- Poison Vapor -->
+      <circle cx='85' cy='145' r='6' fill='#a855f7' opacity='0.7'/>
+      <circle cx='115' cy='145' r='7' fill='#a855f7' opacity='0.7'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#f43f5e' text-anchor='middle'>ẢI 12 • ĐỘC LONG TRÁCH NHIỆM</text>
+</svg>

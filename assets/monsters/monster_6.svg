@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+      <defs>
+        <radialGradient id='bg6' cx='50%' cy='50%' r='70%'>
+          <stop offset='0%' stop-color='#3b0764'/>
+          <stop offset='100%' stop-color='#0f021a'/>
+        </radialGradient>
+      </defs>
+      <rect width='200' height='200' rx='28' fill='url(#bg6)'/>
+      <!-- Digital Matrix & Glitch squares -->
+      <rect x='30' y='40' width='8' height='8' fill='#e879f9' opacity='0.4'/>
+      <rect x='160' y='60' width='12' height='4' fill='#22d3ee' opacity='0.6'/>
+      <rect x='40' y='140' width='14' height='4' fill='#22d3ee' opacity='0.5'/>
+      <rect x='150' y='130' width='6' height='6' fill='#e879f9' opacity='0.4'/>
+      <!-- Phantom Head Shape -->
+      <path d='M60,150 C50,90 60,50 100,45 C140,50 150,90 140,150 C125,135 115,155 100,140 C85,155 75,135 60,150 Z' fill='#a855f7' opacity='0.85'/>
+      <!-- Glitch displacement line -->
+      <path d='M45,95 L155,95' stroke='#22d3ee' stroke-width='2' stroke-dasharray='8,4'/>
+      <!-- Glowing Cyan/Pink Eyes -->
+      <circle cx='85' cy='95' r='12' fill='#06b6d4' filter='drop-shadow(0 0 8px #22d3ee)'/>
+      <circle cx='115' cy='95' r='12' fill='#ec4899' filter='drop-shadow(0 0 8px #f43f5e)'/>
+      <circle cx='85' cy='95' r='5' fill='#fff'/>
+      <circle cx='115' cy='95' r='5' fill='#fff'/>
+      <!-- Stolen Copyright Sign © on forehead -->
+      <circle cx='100' cy='68' r='9' fill='none' stroke='#fde047' stroke-width='2'/>
+      <text x='100' y='72' font-family='sans-serif' font-weight='bold' font-size='10' fill='#fde047' text-anchor='middle'>C</text>
+      <!-- Void Smile -->
+      <path d='M85,120 Q100,135 115,120' fill='none' stroke='#22d3ee' stroke-width='3' stroke-linecap='round'/>
+      <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='12' fill='#e879f9' text-anchor='middle'>ẢI 6 • BÓNG MA BẢN QUYỀN</text>
+    </svg>

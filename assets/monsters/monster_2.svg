@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+      <defs>
+        <radialGradient id='bg2' cx='50%' cy='50%' r='70%'>
+          <stop offset='0%' stop-color='#2e1065'/>
+          <stop offset='100%' stop-color='#0a0518'/>
+        </radialGradient>
+        <linearGradient id='cloak2' x1='0' y1='0' x2='0' y2='1'>
+          <stop offset='0%' stop-color='#7c3aed'/>
+          <stop offset='100%' stop-color='#1e1b4b'/>
+        </linearGradient>
+      </defs>
+      <rect width='200' height='200' rx='28' fill='url(#bg2)'/>
+      <!-- Ghostly aura -->
+      <circle cx='100' cy='95' r='55' fill='#9333ea' opacity='0.25' filter='blur(10px)'/>
+      <!-- Hood / Cloak -->
+      <path d='M50,170 C45,120 55,60 100,50 C145,60 155,120 150,170 C130,155 110,165 100,155 C90,165 70,155 50,170 Z' fill='url(#cloak2)'/>
+      <!-- Shadow face -->
+      <ellipse cx='100' cy='105' rx='32' ry='36' fill='#090514'/>
+      <!-- Glowing Eyes -->
+      <ellipse cx='86' cy='102' rx='8' ry='4' fill='#c084fc' transform='rotate(-10 86 102)'/>
+      <ellipse cx='114' cy='102' rx='8' ry='4' fill='#c084fc' transform='rotate(10 114 102)'/>
+      <circle cx='86' cy='102' r='2' fill='#fff'/>
+      <circle cx='114' cy='102' r='2' fill='#fff'/>
+      <!-- Sinister smile -->
+      <path d='M88,125 Q100,135 112,125' fill='none' stroke='#a855f7' stroke-width='2' stroke-linecap='round'/>
+      <!-- Shadow tendrils -->
+      <path d='M65,160 Q80,180 100,165 Q120,180 135,160' fill='none' stroke='#a855f7' stroke-width='3' opacity='0.7'/>
+      <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='12' fill='#c084fc' text-anchor='middle'>ẢI 2 • BÓNG MA QUYỀN LỰC</text>
+    </svg>

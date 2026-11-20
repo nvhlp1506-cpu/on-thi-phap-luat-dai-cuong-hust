@@ -1,0 +1,24 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_21.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#3f3f46'/>
+      <stop offset='100%' stop-color='#18181b'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_21.svg)'/>
+  
+      <!-- Gear / Cogwheel Halo -->
+      <circle cx='100' cy='105' r='58' fill='none' stroke='#f59e0b' stroke-width='6' stroke-dasharray='16,12'/>
+      <!-- Mechanical Titan Head -->
+      <rect x='60' y='75' width='80' height='65' rx='14' fill='#52525b' stroke='#e4e4e7' stroke-width='3'/>
+      <!-- Patent Gear Bolts -->
+      <circle cx='70' cy='85' r='4' fill='#f59e0b'/>
+      <circle cx='130' cy='85' r='4' fill='#f59e0b'/>
+      <circle cx='70' cy='130' r='4' fill='#f59e0b'/>
+      <circle cx='130' cy='130' r='4' fill='#f59e0b'/>
+      <!-- Glowing Amber Sensor Bar -->
+      <rect x='72' y='100' width='56' height='12' rx='4' fill='#18181b' stroke='#f59e0b' stroke-width='2'/>
+      <line x1='78' y1='106' x2='122' y2='106' stroke='#fbbf24' stroke-width='4'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#f59e0b' text-anchor='middle'>ẢI 21 • HẮC KIM SÁNG CHẾ</text>
+</svg>

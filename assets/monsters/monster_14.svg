@@ -1,0 +1,20 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_14.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#1c1917'/>
+      <stop offset='100%' stop-color='#090807'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_14.svg)'/>
+  
+      <!-- Golem Rock Crest -->
+      <polygon points='70,60 100,35 130,60 145,95 55,95' fill='#57534e' stroke='#a8a29e' stroke-width='4'/>
+      <rect x='50' y='90' width='100' height='60' rx='12' fill='#44403c' stroke='#78716c' stroke-width='4'/>
+      <!-- Glowing Runes of Stare Decisis -->
+      <path d='M65,115 L80,105 L95,115 L80,125 Z' fill='none' stroke='#f59e0b' stroke-width='3'/>
+      <path d='M105,115 L120,105 L135,115 L120,125 Z' fill='none' stroke='#f59e0b' stroke-width='3'/>
+      <!-- Solid Rock Jaw -->
+      <rect x='70' y='132' width='60' height='12' rx='4' fill='#292524' stroke='#a8a29e' stroke-width='2'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#fbbf24' text-anchor='middle'>ẢI 14 • KHỔNG LỒ ÁN LỆ</text>
+</svg>

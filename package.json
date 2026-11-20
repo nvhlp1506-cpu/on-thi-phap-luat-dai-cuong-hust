@@ -1,0 +1,9 @@
+{
+  "name": "on-thi-phap-luat-dai-cuong-hust",
+  "version": "1.0.0",
+  "description": "Dau Truong Tri Thuc & On Thi Phap Luat Dai Cuong HUST",
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

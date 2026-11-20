@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_10.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#450a0a'/>
+      <stop offset='100%' stop-color='#1c0505'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_10.svg)'/>
+  
+      <!-- Three Demon/Serpent Horns -->
+      <polygon points='50,90 20,40 60,65' fill='#7f1d1d' stroke='#f87171' stroke-width='2'/>
+      <polygon points='150,90 180,40 140,65' fill='#7f1d1d' stroke='#f87171' stroke-width='2'/>
+      <polygon points='100,70 100,25 115,55' fill='#991b1b' stroke='#fca5a5' stroke-width='2'/>
+      <ellipse cx='100' cy='112' rx='50' ry='44' fill='#b91c1c' stroke='#ef4444' stroke-width='3'/>
+      <!-- 3 Sets of Eyes (Giả định - Quy định - Chế tài) -->
+      <circle cx='75' cy='105' r='8' fill='#fef08a'/>
+      <circle cx='100' cy='95' r='8' fill='#fef08a'/>
+      <circle cx='125' cy='105' r='8' fill='#fef08a'/>
+      <circle cx='75' cy='105' r='4' fill='#dc2626'/>
+      <circle cx='100' cy='95' r='4' fill='#dc2626'/>
+      <circle cx='125' cy='105' r='4' fill='#dc2626'/>
+      <!-- Menacing Grin -->
+      <path d='M70,135 Q100,160 130,135' fill='#450a0a' stroke='#f87171' stroke-width='3'/>
+      <polygon points='80,136 85,145 90,136' fill='#fff'/>
+      <polygon points='95,137 100,147 105,137' fill='#fff'/>
+      <polygon points='110,136 115,145 120,136' fill='#fff'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#fef08a' text-anchor='middle'>ẢI 10 • TAM ĐẦU XÀ QUY PHẠM</text>
+</svg>

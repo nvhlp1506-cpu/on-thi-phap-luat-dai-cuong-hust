@@ -1,0 +1,15 @@
+# Dependencies & Caches
+node_modules/
+.netlify/
+scratch/
+.system_generated/
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables & secrets
+.env
+.env.*
+*.log

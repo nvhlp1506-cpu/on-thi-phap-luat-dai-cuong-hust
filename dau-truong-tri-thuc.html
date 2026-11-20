@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đấu Trường Tri Thức - Cuộc Chiến Đa Vũ Trụ | Trò Chơi Ôn Thi Pháp Luật Đại Cương HUST</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Inter & Montserrat / Orbitron for Arcade style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    // Tự động dọn sạch 100% dữ liệu mẫu/giả và xóa các kỷ lục 1v1 nếu còn tồn dư trong bộ nhớ thiết bị của người chơi
+    (function() {
+      try {
+        const fakeNames = ["Nguyễn Minh Trí", "Trần Thu Hà", "Lê Quốc Bảo", "Hoàng Anh Tuấn", "Đặng Thùy Dung"];
+        const key = "hust_arena_leaderboard";
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const arr = JSON.parse(raw);
+          if (Array.isArray(arr)) {
+            const cleaned = arr.filter(r => 
+              r && 
+              r.id && 
+              !String(r.id).startsWith("lead_") && 
+              !fakeNames.includes(String(r.name).trim()) &&
+              r.mode !== "pvp"
+            );
+            localStorage.setItem(key, JSON.stringify(cleaned));
+          } else {
+            localStorage.removeItem(key);
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+  
+
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .font-arcade {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .font-tech {
+      font-family: 'Orbitron', monospace;
+    }
+    
+    /* Neon Glow & Animations */
+    .neon-text-gold {
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 170, 0, 0.5);
+    }
+    .neon-text-cyan {
+      text-shadow: 0 0 10px rgba(0, 229, 255, 0.7), 0 0 20px rgba(0, 180, 255, 0.5);
+    }
+    .neon-text-red {
+      text-shadow: 0 0 10px rgba(255, 23, 68, 0.7), 0 0 20px rgba(213, 0, 0, 0.5);
+    }
+
+    /* Fighter Idle Floating Animation */
+    @keyframes fighterIdle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-idle {
+      animation: fighterIdle 2.5s ease-in-out infinite;
+    }
+
+    /* Attack Dash Animations */
+    @keyframes attackRight {
+      0% { transform: translateX(0) scale(1); }
+      30% { transform: translateX(120px) scale(1.15); filter: drop-shadow(0 0 15px #ffd700); }
+      60% { transform: translateX(100px) scale(1.1); }
+      100% { transform: translateX(0) scale(1); }
+    }
+    .animate-attack-right {
+      animation: attackRight 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes attackLeft {
+      0% { transform: translateX(0) scale(1); }
+      30% { transform: translateX(-120px) scale(1.15); filter: drop-shadow(0 0 15px #00e5ff); }
+      60% { transform: translateX(-100px) scale(1.1); }
+      100% { transform: translateX(0) scale(1); }
+    }
+    .animate-attack-left {
+      animation: attackLeft 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Hurt Shake Animation */
+    @keyframes hurtShake {
+      0%, 100% { transform: translateX(0); filter: brightness(1); }
+      20% { transform: translateX(-12px) rotate(-3deg); filter: brightness(1.8) drop-shadow(0 0 15px #ff1744); }
+      40% { transform: translateX(12px) rotate(3deg); filter: brightness(1.8) drop-shadow(0 0 15px #ff1744); }
+      60% { transform: translateX(-8px); }
+      80% { transform: translateX(8px); }
+    }
+    .animate-hurt {
+      animation: hurtShake 0.6s ease-in-out;
+    }
+
+    /* Floating Combat Damage */
+    @keyframes floatDamage {
+      0% { opacity: 0; transform: translateY(10px) scale(0.6); }
+      25% { opacity: 1; transform: translateY(-20px) scale(1.3); }
+      80% { opacity: 1; transform: translateY(-50px) scale(1); }
+      100% { opacity: 0; transform: translateY(-70px) scale(0.8); }
+    }
+    .floating-dmg {
+      animation: floatDamage 1.2s forwards;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    /* Low HP Near-Death Pulse Vignette */
+    @keyframes pulseVignette {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+    .animate-pulse-vignette {
+      animation: pulseVignette 1.1s ease-in-out infinite;
+    }
+    .stroke-text {
+      -webkit-text-stroke: 2px #090d16;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden relative flex flex-col justify-between">
+
+  <!-- LOW HP NEAR-DEATH PULSING VIGNETTE -->
+  <div id="low-hp-vignette" class="pointer-events-none fixed inset-0 z-40 transition-opacity duration-300 opacity-0 bg-[radial-gradient(ellipse_at_center,_transparent_45%,_rgba(225,29,72,0.55)_100%)]"></div>
+
+  <!-- SCREEN GOLD FLASH ON CLUTCH / CRIT -->
+  <div id="screen-flash-overlay" class="pointer-events-none fixed inset-0 z-50 transition-opacity duration-200 opacity-0 bg-amber-400/25"></div>
+
+  <!-- COMBO STREAK POPUP ANNOUNCER (DOUBLE KILL -> GODLIKE) -->
+  <div id="combo-streak-announcer" class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div id="combo-streak-card" class="text-center transform transition-all animate-zoomIn">
+      <div id="combo-streak-title" class="text-4xl sm:text-6xl md:text-7xl font-black font-arcade uppercase tracking-wider text-amber-300 drop-shadow-[0_0_30px_rgba(251,191,36,0.95)] stroke-text">
+        DOUBLE KILL!
+      </div>
+      <div id="combo-streak-subtitle" class="text-xs sm:text-base font-black text-white mt-1 bg-slate-950/90 px-4 py-1.5 rounded-full border-2 border-amber-400/80 inline-block shadow-2xl">
+        🔥 SONG SÁT TRI THỨC (+20% DMG)!
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND CANVAS: Starfield & Hex Particles -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- TOP GLOBAL APP HEADER -->
+  <header class="relative z-20 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 py-2.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-500/20">
+        <i class="fa-solid fa-gamepad text-lg"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-black uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+            GAME VƯỢT ẢI DIỆT QUÁI HUST
+          </span>
+          <span class="text-[11px] text-slate-400 font-medium hidden sm:inline">24 Đại Hùng Ải Tri Thức Bách Khoa</span>
+        </div>
+        <div class="text-sm font-black tracking-tight text-white flex items-center gap-1.5">
+          <span>CHIẾN DỊCH VƯỢT ẢI</span>
+          <span class="text-amber-400 text-xs">★ DIỆT QUÁI TRI THỨC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation & Audio Control -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Return to study portal button -->
+      <a href="index.html" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 border border-slate-700 flex items-center gap-1.5 transition-all">
+        <i class="fa-solid fa-graduation-cap text-red-400"></i>
+        <span class="hidden md:inline">Cổng Ôn Thi HUST</span>
+      </a>
+
+      <!-- Leaderboard Button -->
+      <button onclick="arenaEngine.showLeaderboardScreen()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-400/50 flex items-center gap-1.5 transition-all shadow-sm" title="Bảng xếp hạng đua top người chơi">
+        <i class="fa-solid fa-trophy text-amber-400"></i>
+        <span class="hidden sm:inline">Bảng Xếp Hạng</span>
+      </button>
+
+      <!-- Question Bank Manager Button -->
+      <button onclick="arenaEngine.showScreen('screen-questions-manager')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-950/80 text-indigo-300 hover:bg-indigo-900 border border-indigo-700/60 flex items-center gap-1.5 transition-all">
+        <i class="fa-solid fa-book-atlas"></i>
+        <span class="hidden sm:inline">Bí Tịch Tri Thức</span>
+      </button>
+
+      <!-- Rules & Keyboard Guide Modal Trigger -->
+      <button onclick="toggleRulesModal(true)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-amber-300 hover:bg-slate-700 border border-slate-700 transition-all flex items-center gap-1.5" title="Hướng dẫn phím bấm & luật chơi">
+        <i class="fa-solid fa-keyboard"></i>
+        <span class="hidden sm:inline">Phím Bấm & Luật</span>
+      </button>
+
+      <!-- Sound Toggle -->
+      <button id="btn-sound-toggle" onclick="toggleSound()" class="p-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-700 transition-all" title="Bật/Tắt Âm thanh">
+        <i id="sound-icon" class="fa-solid fa-volume-high text-amber-400"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 1: HOME / LOBBY                                                 -->
+  <!-- ====================================================================== -->
+  <main id="screen-home" class="game-screen relative z-10 flex-1 flex flex-col items-center justify-center p-4 sm:p-8">
+    <div class="max-w-xl w-full text-center space-y-6">
+      
+      <!-- Logo & Title -->
+      <div class="space-y-2">
+        <div class="inline-block px-4 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-bold tracking-widest uppercase animate-pulse">
+          ⚔️ GAME VƯỢT ẢI DIỆT QUÁI • PHÁP LUẬT ĐẠI CƯƠNG HUST ⚔️
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-black font-arcade tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-400 to-amber-500 neon-text-gold">
+          VƯỢT ẢI<br>DIỆT QUÁI
+        </h1>
+        <p class="text-xs sm:text-sm font-bold text-slate-300 tracking-wider font-tech uppercase">
+          🛡️ 24 ĐẠI HÙNG ẢI • TIÊU DIỆT MA VƯƠNG ĐIỂM F • CHINH PHỤC ĐIỂM A+ 🛡️
+        </p>
+      </div>
+
+      <!-- Settings / Gameplay Guide Card -->
+      <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-md space-y-4 text-left">
+        
+        <!-- Controls Guide Banner -->
+        <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg shrink-0">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-slate-100 flex items-center gap-2">
+                <span>HỆ THỐNG PHÍM CHIẾN ĐẤU</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/40">Phím tắt nhanh</span>
+              </div>
+              <div class="text-xs text-slate-300 mt-0.5">
+                Chọn đáp án: <strong class="text-amber-300">1, 2, 3, 4</strong> (hoặc <strong class="text-amber-300">A, B, C, D</strong>) | Hồi máu: <strong class="text-rose-400">Q</strong> | 50/50: <strong class="text-purple-400">E</strong> | Khiên: <strong class="text-yellow-400">S</strong> | Thêm giờ: <strong class="text-cyan-400">T</strong>
+              </div>
+            </div>
+          </div>
+          <button onclick="toggleRulesModal(true)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-700 hover:bg-slate-600 text-amber-300 shrink-0">
+            Luật chơi
+          </button>
+        </div>
+
+        <!-- Gameplay Feature Highlight -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-center">
+          <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="text-amber-400 font-black text-sm">24 HÙNG ẢI</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Độ khó tăng tiến, quái trâu & sát thương cao dần</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="text-rose-400 font-black text-sm">TRẢ LỜI SAI BỊ PHẠT</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Càng ải sâu trả lời sai càng nhanh bị hạ gục</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div class="text-emerald-400 font-black text-sm">ĐUA TOP THẬT</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">100% dữ liệu người dùng thật, không bot ảo</div>
+          </div>
+        </div>
+
+        <!-- Question Pack Indicator -->
+        <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-800/80 text-slate-400">
+          <span>Kho đề thi chuẩn ma trận:</span>
+          <span id="home-pack-name" class="font-bold text-amber-400">🏛️ Toàn Bộ 4,800+ Câu Pháp Luật Đại Cương HUST</span>
+        </div>
+      </div>
+
+      <!-- Main Action Buttons -->
+      <div class="space-y-3">
+        <!-- VÀO CHIẾN DỊCH 24 HÙNG ẢI -->
+        <button onclick="arenaEngine.startCampaignFlow()" class="w-full py-4 px-6 rounded-2xl font-black text-base sm:text-lg bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white shadow-xl shadow-rose-900/40 border-2 border-amber-300 active:scale-98 transition-all flex items-center justify-center gap-3 group">
+          <i class="fa-solid fa-dragon text-2xl text-yellow-300 group-hover:scale-125 transition-transform animate-bounce"></i>
+          <span class="tracking-wider">⚔️ VÀO CHIẾN DỊCH 24 HÙNG ẢI</span>
+          <i class="fa-solid fa-arrow-right text-yellow-300 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+
+        <!-- SUB BUTTONS: HERO SELECT, LEADERBOARD, QUESTIONS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <button onclick="arenaEngine.showScreen('screen-hero-select')" class="py-3 px-3 rounded-2xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-amber-500/40 transition-all flex items-center justify-center gap-2 shadow-md">
+            <i class="fa-solid fa-users text-amber-400"></i>
+            <span>CHỌN DŨNG SĨ</span>
+          </button>
+
+          <button onclick="arenaEngine.showLeaderboardScreen()" class="py-3 px-3 rounded-2xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-950/60 to-slate-900 hover:bg-slate-800 text-amber-300 border border-amber-500/40 flex items-center justify-center gap-2 shadow-md">
+            <i class="fa-solid fa-trophy text-amber-400"></i>
+            <span>BẢNG XẾP HẠNG</span>
+          </button>
+
+          <button onclick="arenaEngine.showScreen('screen-questions-manager')" class="py-3 px-3 rounded-2xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-indigo-500/40 transition-all flex items-center justify-center gap-2 shadow-md">
+            <i class="fa-solid fa-scroll text-indigo-400"></i>
+            <span>BÍ TỊCH TRI THỨC</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="text-xs text-slate-500">
+        Tương thích hoàn hảo với Bàn phím máy tính, Chuột, Màn hình cảm ứng & AI Webcam
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 2: HERO SELECTION ("CHỌN DŨNG SĨ ĐỒNG HÀNH")                    -->
+  <!-- ====================================================================== -->
+  <main id="screen-hero-select" class="game-screen hidden relative z-10 flex-1 flex flex-col p-4 sm:p-6 max-w-7xl mx-auto w-full">
+    
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-black font-arcade text-white">CHỌN DŨNG SĨ ĐỒNG HÀNH</h2>
+        <p class="text-xs sm:text-sm text-slate-400">Chọn 1 trong 20 nhân vật huyền thoại sở hữu tuyệt kỹ riêng để cùng bạn diệt quái vượt ải</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="arenaEngine.showScreen('screen-home')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">
+          <i class="fa-solid fa-arrow-left mr-1"></i> Trang Chủ
+        </button>
+      </div>
+    </div>
+
+    <!-- Matchup Selection Bar (Single Chosen Hero) -->
+    <div class="max-w-xl mx-auto w-full mb-4">
+      <div id="team1-pick-box" class="p-4 sm:p-5 rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-amber-950/60 via-slate-900 to-amber-950/40 shadow-xl shadow-amber-500/10 flex items-center gap-4 relative">
+        <span class="absolute top-2 left-3 text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 uppercase tracking-wider shadow">
+          👑 DŨNG SĨ XUẤT TRẬN
+        </span>
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-slate-900 border-2 border-amber-400/80 shrink-0 mt-3 shadow-lg">
+          <img id="team1-hero-avatar" src="" alt="Dũng Sĩ" class="w-full h-full object-cover">
+        </div>
+        <div class="flex-1 mt-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="team1-hero-name" class="text-xl sm:text-2xl font-black text-amber-300 font-arcade">Ngộ Không</span>
+            <span id="team1-hero-role" class="text-[11px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40">Đấu Sĩ Tốc Độ</span>
+          </div>
+          <div id="team1-hero-title" class="text-xs text-slate-300 font-medium">Tề Thiên Đại Thánh</div>
+          <div class="mt-1 text-xs text-slate-400 leading-snug">
+            <span class="text-amber-400 font-semibold">Nội tại:</span> <span id="team1-hero-passive">...</span>
+          </div>
+          <div class="text-xs text-amber-200/90 leading-snug">
+            <span class="text-yellow-400 font-semibold">Tuyệt kỹ:</span> <span id="team1-hero-ultimate">...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Role Filter Tabs -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-3 text-xs font-bold">
+      <button onclick="filterHeroGrid('all')" class="hero-filter-btn px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950">Tất Cả (20)</button>
+      <button onclick="filterHeroGrid('Tốc Độ')" class="hero-filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Tốc Độ</button>
+      <button onclick="filterHeroGrid('Đấu Sĩ')" class="hero-filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Đấu Sĩ</button>
+      <button onclick="filterHeroGrid('Pháp Sư')" class="hero-filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Pháp Sư</button>
+      <button onclick="filterHeroGrid('Hộ Vệ')" class="hero-filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Hộ Vệ / Đỡ Đòn</button>
+      <button onclick="filterHeroGrid('Sát Thủ')" class="hero-filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700">Sát Thủ</button>
+    </div>
+
+    <!-- 20 HEROES GRID -->
+    <div id="hero-selection-grid" class="flex-1 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-2.5 overflow-y-auto max-h-[460px] p-1">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="pt-4 flex items-center justify-between border-t border-slate-800 mt-3">
+      <div class="text-xs text-slate-400">
+        Nhấp vào bất kỳ dũng sĩ nào bên trên để đổi nhân vật chiến đấu
+      </div>
+      <button onclick="arenaEngine.showScreen('screen-campaign-select')" class="py-3 px-8 rounded-xl font-black text-sm sm:text-base font-arcade uppercase tracking-wider bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-lg shadow-amber-500/20 hover:scale-102 transition-all flex items-center gap-2">
+        <span>⚔️ VÀO BẢN ĐỒ 24 ẢI</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 3: MAP SELECTION ("CHỌN BẢN ĐỒ CHIẾN ĐẤU")                      -->
+  <!-- ====================================================================== -->
+  <main id="screen-map-select" class="game-screen hidden relative z-10 flex-1 flex flex-col p-4 sm:p-6 max-w-6xl mx-auto w-full">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-black font-arcade text-white">CHỌN BẢN ĐỒ CHIẾN ĐẤU</h2>
+        <p class="text-xs sm:text-sm text-slate-400">Địa điểm quyết định không khí của trận chiến đa vũ trụ</p>
+      </div>
+      <button onclick="arenaEngine.showScreen('screen-hero-select')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">
+        <i class="fa-solid fa-arrow-left mr-1"></i> Chọn Lại Tướng
+      </button>
+    </div>
+
+    <!-- 8 MAPS GRID -->
+    <div id="map-selection-grid" class="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 overflow-y-auto p-1">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Bottom Action -->
+    <div class="pt-4 flex items-center justify-between border-t border-slate-800 mt-4">
+      <div class="text-xs text-slate-400">
+        Bấm chọn bản đồ bạn yêu thích và bắt đầu trận đấu
+      </div>
+      <button onclick="arenaEngine.enterVersusTransition()" class="py-3.5 px-8 rounded-xl font-black text-base sm:text-lg font-arcade uppercase tracking-wider bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 text-slate-950 shadow-xl shadow-amber-500/20 hover:scale-102 transition-all flex items-center gap-2">
+        <i class="fa-solid fa-swords"></i>
+        <span>XÁC NHẬN VÀO TRẬN</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 4: VERSUS MATCHUP SCREEN ("VS")                                 -->
+  <!-- ====================================================================== -->
+  <main id="screen-versus" class="game-screen hidden relative z-10 flex-1 flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-4xl relative overflow-hidden rounded-3xl bg-slate-900 border-2 border-slate-700 shadow-2xl">
+      
+      <!-- Split Screen Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 min-h-[380px] relative">
+        
+        <!-- TEAM 1 (Left - Amber/Gold) -->
+        <div class="p-8 bg-gradient-to-br from-amber-950/60 via-slate-900 to-slate-950 flex flex-col items-center justify-center text-center space-y-3 border-b md:border-b-0 md:border-r border-slate-800">
+          <span id="vs-team1-badge" class="px-3 py-1 rounded-full text-xs font-black bg-amber-500 text-slate-950 tracking-wider">ĐỘI 1</span>
+          <div class="w-32 h-32 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-amber-600 to-amber-400 shadow-xl shadow-amber-500/30">
+            <img id="vs-team1-avatar" src="" alt="Team 1" class="w-full h-full object-cover rounded-full filter drop-shadow">
+          </div>
+          <h3 id="vs-team1-name" class="text-3xl font-black text-white font-arcade">Ngộ Không</h3>
+          <div id="vs-team1-title" class="text-sm text-amber-300 font-bold">Tề Thiên Đại Thánh</div>
+          <p id="vs-team1-quote" class="text-xs text-slate-400 italic">"..."</p>
+        </div>
+
+        <!-- TEAM 2 (Right - Cyan/Blue) -->
+        <div class="p-8 bg-gradient-to-bl from-cyan-950/60 via-slate-900 to-slate-950 flex flex-col items-center justify-center text-center space-y-3">
+          <span id="vs-team2-badge" class="px-3 py-1 rounded-full text-xs font-black bg-cyan-500 text-slate-950 tracking-wider">ĐỘI 2</span>
+          <div class="w-32 h-32 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-cyan-600 to-cyan-400 shadow-xl shadow-cyan-500/30">
+            <img id="vs-team2-avatar" src="" alt="Team 2" class="w-full h-full object-cover rounded-full filter drop-shadow">
+          </div>
+          <h3 id="vs-team2-name" class="text-3xl font-black text-white font-arcade">Đại Sư</h3>
+          <div id="vs-team2-title" class="text-sm text-cyan-300 font-bold">Kim Cang Pháp Sư</div>
+          <p id="vs-team2-quote" class="text-xs text-slate-400 italic">"..."</p>
+        </div>
+
+        <!-- Center VS Emblem -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-cyan-500 flex items-center justify-center shadow-2xl border-4 border-slate-950">
+            <span class="text-2xl sm:text-3xl font-black font-arcade text-white italic tracking-tighter">VS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action -->
+      <div class="p-4 bg-slate-950 text-center border-t border-slate-800">
+        <button onclick="arenaEngine.startBattle()" class="py-3 px-10 rounded-xl font-black text-lg font-arcade uppercase tracking-wider bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 text-white shadow-xl hover:scale-105 active:scale-95 transition-all">
+          ⚔️ VÀO TRẬN!
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 5: BATTLE ARENA (ĐẤU TRƯỜNG CHIẾN ĐẤU)                           -->
+  <!-- ====================================================================== -->
+  <main id="screen-battle" class="game-screen hidden relative z-10 flex-1 flex flex-col justify-between p-2 sm:p-4 max-w-6xl mx-auto w-full">
+    
+    <!-- TOP STATUS HUD: TEAM 1 vs TEAM 2 HP & ULTIMATE BARS -->
+    <div class="p-3 sm:p-4 rounded-2xl bg-slate-900/90 border border-slate-800/80 shadow-xl backdrop-blur-md mb-3">
+        <!-- Campaign Active Relics Ribbon (Top of HUD) -->
+        <div id="campaign-relics-ribbon" class="hidden flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+              CỔ VẬT TRI THỨC
+            </span>
+            <div id="campaign-relics-list" class="flex items-center gap-1.5 flex-wrap">
+              <!-- Dynamic relics icons rendered via JS -->
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400">
+            Ải: <strong id="battle-campaign-stage-badge" class="text-amber-400">1/24</strong> | Điểm: <strong id="battle-campaign-score-badge" class="text-emerald-400">0 PTS</strong>
+          </div>
+        </div>
+      <div class="grid grid-cols-12 gap-2 sm:gap-4 items-center">
+        
+        <!-- Team 1 HUD (Left - 5 Cols) -->
+        <div class="col-span-5 flex items-center gap-2 sm:gap-3">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-slate-950 border-2 border-amber-400 shrink-0 relative shadow-md">
+            <img id="t1-fighter-img" src="" alt="T1" class="w-full h-full object-cover rounded-full">
+            <span id="t1-combo-badge" class="hidden absolute -bottom-1 -right-1 text-[9px] font-black px-1.5 py-0.5 rounded-full bg-rose-500 text-white shadow">
+              COMBO
+            </span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between text-xs font-bold mb-1">
+              <span id="t1-fighter-name" class="text-amber-300 truncate">Tên Tướng</span>
+              <span id="t1-hp-text" class="text-slate-300 font-tech">100/100 HP</span>
+            </div>
+            <!-- HP Bar -->
+            <div class="w-full h-3.5 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
+              <div id="t1-hp-fill" class="h-full bg-gradient-to-r from-amber-500 to-emerald-400 rounded-full transition-all duration-300" style="width: 100%;"></div>
+            </div>
+            <!-- Ultimate Energy Bar -->
+            <div class="flex items-center gap-1.5 mt-1">
+              <span class="text-[9px] text-slate-400 font-bold uppercase">Tuyệt kỹ:</span>
+              <div class="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="t1-energy-fill" class="h-full bg-amber-400 transition-all duration-300" style="width: 0%;"></div>
+              </div>
+              <span id="t1-energy-text" class="text-[9px] font-mono text-amber-300">0%</span>
+              <span id="t1-ult-badge" class="hidden text-[9px] font-black text-amber-300 animate-pulse uppercase">SẴN SÀNG!</span>
+            </div>
+            <!-- Low HP Clutch Mode Badge -->
+            <div id="t1-clutch-badge" class="hidden mt-1 px-2 py-0.5 rounded bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 text-white font-black text-[9px] uppercase tracking-wider animate-bounce shadow-md shadow-rose-600/40 flex items-center gap-1">
+              <i class="fa-solid fa-fire text-amber-300"></i>
+              <span>NGHỊCH CẢNH: +40% DMG & HÚT MÁU!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Match Timer & Round (2 Cols) -->
+        <div class="col-span-2 text-center">
+          <div id="arena-round-number" class="text-[10px] font-bold text-slate-400 uppercase">Hiệp 1</div>
+          <div id="arena-timer-value" class="text-2xl sm:text-3xl font-black font-tech text-amber-400 my-0.5">25</div>
+          <div id="battle-map-badge" class="text-[9px] text-slate-400 truncate">Vũ Trụ</div>
+        </div>
+
+        <!-- Team 2 HUD (Right - 5 Cols) -->
+        <div class="col-span-5 flex items-center gap-2 sm:gap-3 flex-row-reverse">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-slate-950 border-2 border-cyan-400 shrink-0 relative shadow-md">
+            <img id="t2-fighter-img" src="" alt="T2" class="w-full h-full object-cover rounded-full">
+            <span id="t2-combo-badge" class="hidden absolute -bottom-1 -left-1 text-[9px] font-black px-1.5 py-0.5 rounded-full bg-rose-500 text-white shadow">
+              COMBO
+            </span>
+          </div>
+          <div class="flex-1 min-w-0 text-right">
+            <div class="flex items-center justify-between flex-row-reverse text-xs font-bold mb-1">
+              <span id="t2-fighter-name" class="text-cyan-300 truncate">Tên Tướng</span>
+              <span id="t2-hp-text" class="text-slate-300 font-tech">100/100 HP</span>
+            </div>
+            <!-- HP Bar -->
+            <div class="w-full h-3.5 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
+              <div id="t2-hp-fill" class="h-full bg-gradient-to-l from-cyan-500 to-emerald-400 rounded-full transition-all duration-300 ml-auto" style="width: 100%;"></div>
+            </div>
+            <!-- Ultimate Energy Bar -->
+            <div class="flex items-center gap-1.5 mt-1 flex-row-reverse">
+              <span class="text-[9px] text-slate-400 font-bold uppercase">Tuyệt kỹ:</span>
+              <div class="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="t2-energy-fill" class="h-full bg-cyan-400 transition-all duration-300 ml-auto" style="width: 0%;"></div>
+              </div>
+              <span id="t2-energy-text" class="text-[9px] font-mono text-cyan-300">0%</span>
+              <span id="t2-ult-badge" class="hidden text-[9px] font-black text-cyan-300 animate-pulse uppercase">SẴN SÀNG!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATTLEFIELD STAGE: The Ring & Characters Facing Each Other -->
+    <div id="battle-stage-container" class="relative rounded-2xl border border-slate-800 overflow-hidden min-h-[220px] sm:min-h-[280px] flex items-end justify-between px-8 sm:px-16 pb-6 shadow-2xl transition-all">
+      
+      <!-- Ultimate Cinematic Anime Banner (Hidden by default) -->
+      <div id="ultimate-cinematic-banner" class="hidden absolute inset-0 bg-black/80 z-40 flex items-center justify-center p-4">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Team 1 Fighter Platform (Left) -->
+      <div id="t1-fighter-card" class="relative flex flex-col items-center animate-idle transition-transform duration-300">
+        <!-- Pedestal Ring -->
+        <div class="w-24 sm:w-36 h-6 rounded-full bg-amber-500/20 border-2 border-amber-400/50 shadow-lg shadow-amber-500/20 absolute -bottom-3"></div>
+        <!-- Character Avatar / Sprite -->
+        <div class="w-28 h-28 sm:w-40 sm:h-40 relative z-10 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)]">
+          <img id="t1-battle-sprite" src="" alt="Fighter 1" class="w-full h-full object-cover rounded-2xl border-2 border-amber-400/80 shadow-2xl">
+        </div>
+      </div>
+
+      <!-- Center Dynamic Banners (Buzz status, Combat Feedback) -->
+      <div class="absolute inset-x-4 top-4 z-20 flex flex-col items-center gap-2 pointer-events-none">
+        <div id="buzz-notification-banner" class="hidden pointer-events-auto"></div>
+        <div id="combat-feedback-banner" class="hidden pointer-events-auto"></div>
+      </div>
+
+      <!-- Monster Intent & Rage Badge (Campaign Mode Only) -->
+      <div id="monster-intent-container" class="hidden absolute -top-12 right-6 sm:right-16 z-20 flex flex-col items-end gap-1 pointer-events-none">
+        <div id="monster-intent-badge" class="px-3 py-1 rounded-xl bg-slate-950/95 border border-slate-700 text-slate-200 text-xs font-bold shadow-xl flex items-center gap-1.5 animate-fadeIn">
+          <span id="monster-intent-icon">🗡️</span>
+          <span id="monster-intent-text">Ý đồ: Tấn công ~10 HP</span>
+        </div>
+        <!-- Monster Rage Bar -->
+        <div class="flex items-center gap-1.5 bg-slate-950/90 px-2 py-0.5 rounded-lg border border-slate-800 text-[10px]">
+          <span class="text-rose-400 font-bold uppercase">Nộ khí:</span>
+          <div class="w-20 h-2 bg-slate-800 rounded-full overflow-hidden">
+            <div id="monster-rage-fill" class="h-full bg-gradient-to-r from-amber-500 to-rose-600 transition-all duration-300" style="width: 0%;"></div>
+          </div>
+          <span id="monster-rage-text" class="text-rose-300 font-mono font-bold">0%</span>
+        </div>
+      </div>
+
+      <!-- Team 2 Fighter Platform (Right) -->
+      <div id="t2-fighter-card" class="relative flex flex-col items-center animate-idle transition-transform duration-300">
+        <!-- Pedestal Ring -->
+        <div class="w-24 sm:w-36 h-6 rounded-full bg-cyan-500/20 border-2 border-cyan-400/50 shadow-lg shadow-cyan-500/20 absolute -bottom-3"></div>
+        <!-- Character Avatar / Sprite -->
+        <div class="w-28 h-28 sm:w-40 sm:h-40 relative z-10 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] scale-x-[-1]">
+          <img id="t2-battle-sprite" src="" alt="Fighter 2" class="w-full h-full object-cover rounded-2xl border-2 border-cyan-400/80 shadow-2xl">
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN RPG ITEM / SPELL ACTION BAR (Bình Máu, Kính 50/50, Khiên Hộ Mệnh, Đóng Băng Thời Gian) -->
+    <div id="campaign-rpg-bar" class="hidden grid grid-cols-2 sm:grid-cols-4 gap-2.5 my-2.5">
+      <!-- Item 1: Health Potion (Key H) -->
+      <button id="btn-item-potion" onclick="arenaEngine.useItemPotion()" class="p-2.5 rounded-xl border border-rose-500/60 bg-gradient-to-r from-rose-950/80 to-slate-900 text-rose-200 hover:border-rose-400 hover:bg-rose-900/60 transition-all flex items-center justify-between shadow-md group disabled:opacity-40 disabled:pointer-events-none" title="Hồi phục +35 HP khẩn cấp (Phím H)">
+        <div class="flex items-center gap-2">
+          <span class="text-xl group-hover:scale-110 transition-transform">🧪</span>
+          <div class="text-left">
+            <div class="text-xs font-black text-rose-300">Bình Dược HUST</div>
+            <div class="text-[10px] text-slate-400">+35 HP (Phím H)</div>
+          </div>
+        </div>
+        <span id="item-count-potion" class="px-2 py-0.5 rounded-full bg-rose-500 text-slate-950 text-xs font-black">2</span>
+      </button>
+
+      <!-- Item 2: Banish 50/50 (Key E) -->
+      <button id="btn-item-banish" onclick="arenaEngine.useItemBanish()" class="p-2.5 rounded-xl border border-purple-500/60 bg-gradient-to-r from-purple-950/80 to-slate-900 text-purple-200 hover:border-purple-400 hover:bg-purple-900/60 transition-all flex items-center justify-between shadow-md group disabled:opacity-40 disabled:pointer-events-none" title="Loại bỏ 2 phương án sai (Phím E)">
+        <div class="flex items-center gap-2">
+          <span class="text-xl group-hover:scale-110 transition-transform">🔮</span>
+          <div class="text-left">
+            <div class="text-xs font-black text-purple-300">Kính Chiếu Yêu</div>
+            <div class="text-[10px] text-slate-400">50/50 (Phím E)</div>
+          </div>
+        </div>
+        <span id="item-count-banish" class="px-2 py-0.5 rounded-full bg-purple-500 text-white text-xs font-black">1</span>
+      </button>
+
+      <!-- Item 3: Divine Shield (Key S) -->
+      <button id="btn-item-shield" onclick="arenaEngine.useItemShield()" class="p-2.5 rounded-xl border border-amber-500/60 bg-gradient-to-r from-amber-950/80 to-slate-900 text-amber-200 hover:border-amber-400 hover:bg-amber-900/60 transition-all flex items-center justify-between shadow-md group disabled:opacity-40 disabled:pointer-events-none" title="Chặn 100% sát thương nếu trả lời sai câu này (Phím S)">
+        <div class="flex items-center gap-2">
+          <span class="text-xl group-hover:scale-110 transition-transform">🛡️</span>
+          <div class="text-left">
+            <div class="text-xs font-black text-amber-300">Kim Cang Hộ Thể</div>
+            <div class="text-[10px] text-slate-400">Chặn Phản Đòn (Phím S)</div>
+          </div>
+        </div>
+        <span id="item-count-shield" class="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 text-xs font-black">1</span>
+      </button>
+
+      <!-- Item 4: Freeze Time (Key T) -->
+      <button id="btn-item-freeze" onclick="arenaEngine.useItemFreeze()" class="p-2.5 rounded-xl border border-cyan-500/60 bg-gradient-to-r from-cyan-950/80 to-slate-900 text-cyan-200 hover:border-cyan-400 hover:bg-cyan-900/60 transition-all flex items-center justify-between shadow-md group disabled:opacity-40 disabled:pointer-events-none" title="Thêm +15 giây suy nghĩ (Phím T)">
+        <div class="flex items-center gap-2">
+          <span class="text-xl group-hover:scale-110 transition-transform">⏳</span>
+          <div class="text-left">
+            <div class="text-xs font-black text-cyan-300">Đồng Hồ Cát</div>
+            <div class="text-[10px] text-slate-400">+15 Giây (Phím T)</div>
+          </div>
+        </div>
+        <span id="item-count-freeze" class="px-2 py-0.5 rounded-full bg-cyan-500 text-slate-950 text-xs font-black">1</span>
+      </button>
+    </div>
+
+
+    <!-- QUESTION CARD & 4 CHOICES -->
+    <div class="p-4 sm:p-5 rounded-2xl bg-slate-900/95 border border-slate-800 shadow-2xl backdrop-blur-md space-y-3">
+      
+      <!-- Question Title / Content -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between gap-2 flex-wrap pb-1 border-b border-slate-800/80">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-xs uppercase shrink-0 border border-amber-400/30">
+              CÂU HỎI
+            </span>
+            <span id="arena-question-chapter" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold text-xs border border-slate-700/80">
+              Pháp Luật Đại Cương HUST
+            </span>
+            <span id="arena-unseen-badge" class="px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 font-bold text-xs border border-emerald-600/60 flex items-center gap-1 shadow-sm">
+              <i class="fa-solid fa-sparkles text-emerald-400 text-[10px]"></i> <span id="arena-unseen-text">Chống Trùng Lặp: BẬT</span>
+            </span>
+          </div>
+
+          <!-- Reroll / Dynamic Question Action Button -->
+          <div class="flex items-center gap-2">
+            <span id="arena-seen-stat" class="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-slate-400 bg-slate-950/80 px-2.5 py-1 rounded-lg border border-slate-800">
+              <i class="fa-solid fa-book-open text-amber-400/80"></i>
+              <span>Chinh phục: <b id="seen-count-text" class="text-amber-300">0</b>/4,803 câu</span>
+            </span>
+            <button id="btn-reroll-question" onclick="arenaEngine.rerollQuestion()" title="Đổi sang câu hỏi khác từ kho đề (Phím R)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-amber-200 text-xs font-bold border border-slate-600 flex items-center gap-1.5 transition-all active:scale-95 shadow">
+              <i class="fa-solid fa-shuffle text-amber-400"></i>
+              <span>Đổi câu khác (Phím R)</span>
+            </button>
+          </div>
+        </div>
+        <h3 id="arena-question-text" class="text-base sm:text-lg font-bold text-slate-100 leading-snug pt-1">
+          Đang nạp câu hỏi...
+        </h3>
+      </div>
+
+      <!-- 4 Option Choices Grid -->
+      <div id="arena-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <!-- Generated via JS -->
+      </div>
+
+      <!-- Educational Explanation Box (Shown after answering) -->
+      <div id="question-explanation-box" class="hidden p-3 rounded-xl bg-slate-800/90 border border-slate-700 text-xs sm:text-sm text-slate-300 flex items-start gap-2.5 animate-fadeIn">
+        <i class="fa-solid fa-circle-info text-amber-400 text-base shrink-0 mt-0.5"></i>
+        <div>
+          <strong class="text-amber-300">Giải thích chi tiết: </strong>
+          <span id="question-explanation-text">...</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 6: VICTORY / DEFAT (K.O. SCREEN)                                 -->
+  <!-- ====================================================================== -->
+  <main id="screen-victory" class="game-screen hidden relative z-10 flex-1 flex flex-col items-center justify-center p-4">
+    <div class="max-w-xl w-full p-6 sm:p-8 rounded-3xl bg-slate-900/95 border-2 border-amber-400/80 shadow-2xl shadow-amber-500/20 text-center space-y-6 animate-zoomIn">
+      
+      <!-- KO Banner -->
+      <div class="space-y-1">
+        <div class="text-5xl sm:text-7xl font-black font-arcade text-rose-500 tracking-tighter drop-shadow-[0_0_20px_rgba(244,63,94,0.8)]">
+          K.O.!
+        </div>
+        <div id="victory-team-badge" class="inline-block px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-amber-500 text-slate-950">
+          CHIẾN THẮNG: ĐỘI 1
+        </div>
+      </div>
+
+      <!-- Champion Hero Portrait -->
+      <div class="flex flex-col items-center space-y-2">
+        <div class="w-32 h-32 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-amber-500 to-amber-300 shadow-xl shadow-amber-500/30">
+          <img id="victory-hero-avatar" src="" alt="Champion" class="w-full h-full object-cover rounded-full filter drop-shadow">
+        </div>
+        <h3 id="victory-hero-name" class="text-3xl font-black text-white font-arcade">Ngộ Không</h3>
+        <div id="victory-hero-title" class="text-sm text-amber-400 font-bold">Tề Thiên Đại Thánh</div>
+        <p id="victory-hero-quote" class="text-xs text-slate-400 italic max-w-sm">"..."</p>
+      </div>
+
+      <!-- Match Statistics -->
+      <div class="grid grid-cols-2 gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+        <div class="text-left space-y-1">
+          <div class="font-bold text-amber-400">ĐỘI 1</div>
+          <div>Số câu đúng: <span id="stat-t1-correct" class="font-bold text-white">0</span></div>
+          <div>Tổng sát thương: <span id="stat-t1-dmg" class="font-bold text-white">0</span> HP</div>
+        </div>
+        <div class="text-right space-y-1">
+          <div class="font-bold text-cyan-400">ĐỘI 2</div>
+          <div>Số câu đúng: <span id="stat-t2-correct" class="font-bold text-white">0</span></div>
+          <div>Tổng sát thương: <span id="stat-t2-dmg" class="font-bold text-white">0</span> HP</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5">
+        <button onclick="arenaEngine.startBattle()" class="py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 hover:scale-102 transition-all">
+          <i class="fa-solid fa-rotate-left mr-1"></i> Đấu Lại
+        </button>
+        <button onclick="arenaEngine.openSaveScoreModal('pvp')" class="py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/20 transition-all">
+          <i class="fa-solid fa-trophy mr-1"></i> Lưu Kỷ Lục
+        </button>
+        <button onclick="arenaEngine.showScreen('screen-hero-select')" class="py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all">
+          <i class="fa-solid fa-users mr-1"></i> Đổi Tướng
+        </button>
+        <button onclick="arenaEngine.showScreen('screen-home')" class="py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all">
+          <i class="fa-solid fa-house mr-1"></i> Trang Chủ
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN: CHIẾN DỊCH VƯỢT ẢI DIỆT QUÁI (screen-campaign-select)            -->
+  <!-- ====================================================================== -->
+  <main id="screen-campaign-select" class="game-screen hidden relative z-10 flex-1 flex flex-col p-4 sm:p-6 max-w-7xl mx-auto w-full">
+    <!-- Top Header -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[10px] font-black uppercase tracking-widest">CHẾ ĐỘ MỚI: 24 HÙNG ẢI</span>
+          <span class="text-xs text-amber-400 font-bold"><i class="fa-solid fa-fire mr-1"></i>24 Ải Chinh Phục Toàn Bộ Kho Đề HUST</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black font-arcade text-white tracking-tight mt-0.5">VƯỢT ẢI DIỆT QUÁI</h2>
+        <p class="text-xs sm:text-sm text-slate-400">Trả lời đúng để dũng sĩ xuất chiêu tiêu diệt 24 ma thú thao túng pháp luật, ôn trọn 4,800+ câu hỏi!</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="arenaEngine.showScreen('screen-leaderboard')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950 transition-all flex items-center gap-1.5 shadow-md">
+          <i class="fa-solid fa-trophy text-amber-400"></i>
+          <span>Bảng Xếp Hạng</span>
+        </button>
+        <button onclick="arenaEngine.showScreen('screen-hero-select')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-users"></i>
+          <span class="hidden sm:inline">Đổi Tướng</span>
+        </button>
+        <button onclick="arenaEngine.showScreen('screen-home')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">
+          <i class="fa-solid fa-arrow-left mr-1"></i> Trang Chủ
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Status & Campaign HUD Banner -->
+    <div class="mb-5 p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-amber-950/30 to-slate-900 border border-amber-500/40 shadow-xl flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-amber-400 to-amber-600 border-2 border-amber-300 shadow-lg shadow-amber-500/20 shrink-0">
+          <img id="campaign-hero-avatar" src="assets/avatars/bachkhoa.jpg" alt="Dũng Sĩ" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500 text-slate-950 uppercase">DŨNG SĨ CHIẾN ĐẤU</span>
+            <span id="campaign-hero-role" class="text-xs text-amber-400 font-medium">Chiến Binh Tri Thức HUST</span>
+          </div>
+          <h3 id="campaign-hero-name" class="text-lg sm:text-xl font-black text-white font-arcade">Chiến Binh Bách Khoa</h3>
+          <p id="campaign-hero-title" class="text-xs text-slate-400">Hộ Vệ Kỷ Cương & Pháp Chế Bách Khoa</p>
+        </div>
+      </div>
+
+      <!-- Campaign Quick Stats -->
+      <div class="flex items-center gap-3 sm:gap-6 text-center">
+        <div class="p-2 sm:p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 min-w-[85px]">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Ải Đã Mở</div>
+          <div id="campaign-unlocked-badge" class="text-base sm:text-lg font-black text-emerald-400 font-arcade">1 / 24</div>
+        </div>
+        <div class="p-2 sm:p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 min-w-[85px]">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Điểm Tích Lũy</div>
+          <div id="campaign-total-score-badge" class="text-base sm:text-lg font-black text-amber-400 font-arcade">0 PTS</div>
+        </div>
+        <div class="p-2 sm:p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 min-w-[85px]">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Max Combo</div>
+          <div id="campaign-max-combo-badge" class="text-base sm:text-lg font-black text-cyan-400 font-arcade">x0</div>
+        </div>
+        <button onclick="arenaEngine.showScreen('screen-hero-select')" class="px-3 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all flex items-center gap-1 shadow-md">
+          <i class="fa-solid fa-rotate mr-0.5"></i> Chọn Tướng
+        </button>
+      </div>
+    </div>
+
+    <!-- Realm Filter Tabs (7 Khu Vực / 24 Ải) -->
+    <div class="mb-4 flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-thin">
+      <button id="campaign-filter-all" onclick="arenaEngine.renderCampaignStagesMap('all')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-amber-500 text-slate-950 shadow-md transition-all">
+        🌟 Tất Cả (24 Ải)
+      </button>
+      <button id="campaign-filter-realm_1" onclick="arenaEngine.renderCampaignStagesMap('realm_1')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        🏛️ Khu 1: Khởi Nguyên Nhà Nước (Ải 1-4)
+      </button>
+      <button id="campaign-filter-realm_2" onclick="arenaEngine.renderCampaignStagesMap('realm_2')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        ⚖️ Khu 2: Bộ Máy Nhà Nước VN (Ải 5-8)
+      </button>
+      <button id="campaign-filter-realm_3" onclick="arenaEngine.renderCampaignStagesMap('realm_3')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        📜 Khu 3: Cơ Bản Về Pháp Luật (Ải 9-12)
+      </button>
+      <button id="campaign-filter-realm_4" onclick="arenaEngine.renderCampaignStagesMap('realm_4')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        🌍 Khu 4: Pháp Luật Thế Giới (Ải 13-15)
+      </button>
+      <button id="campaign-filter-realm_5" onclick="arenaEngine.renderCampaignStagesMap('realm_5')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        🇻🇳 Khu 5: Các Ngành Luật VN (Ải 16-19)
+      </button>
+      <button id="campaign-filter-realm_6" onclick="arenaEngine.renderCampaignStagesMap('realm_6')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        💡 Khu 6: Sở Hữu Trí Tuệ (Ải 20-22)
+      </button>
+      <button id="campaign-filter-realm_7" onclick="arenaEngine.renderCampaignStagesMap('realm_7')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all">
+        ☠️ Khu 7: Đỉnh Phong Phá Đảo (Ải 23-24)
+      </button>
+    </div>
+
+    <!-- 24 Stages Cards Grid -->
+    <div id="campaign-stages-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 flex-1 overflow-y-auto pb-4">
+      <!-- Generated via JS: arenaEngine.renderCampaignStagesMap() -->
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN: BẢNG XẾP HẠNG ĐUA TOP (screen-leaderboard)                     -->
+  <!-- ====================================================================== -->
+  <main id="screen-leaderboard" class="game-screen hidden relative z-10 flex-1 flex flex-col p-4 sm:p-6 max-w-7xl mx-auto w-full">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-black uppercase tracking-widest">ĐUA TOP VINH DANH</span>
+          <span class="text-xs text-slate-400">Cập nhật theo thời gian thực</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black font-arcade text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-600">
+          🏆 BẢNG XẾP HẠNG TRI THỨC
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400">Vinh danh các thủ khoa & kiện tướng chinh phục Pháp Luật Đại Cương HUST!</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="arenaEngine.openSaveScoreModal()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 hover:scale-102 transition-all flex items-center gap-1.5 shadow-lg shadow-amber-500/20">
+          <i class="fa-solid fa-medal"></i>
+          <span>Lưu Kỷ Lục Của Bạn</span>
+        </button>
+        <button onclick="arenaEngine.startCampaignFlow()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-dragon"></i>
+          <span>Vượt Ải Ngay</span>
+        </button>
+        <button onclick="arenaEngine.showScreen('screen-home')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">
+          <i class="fa-solid fa-arrow-left mr-1"></i> Trang Chủ
+        </button>
+      </div>
+    </div>
+
+    <!-- Personal Device / IP Status Banner -->
+    <div id="leaderboard-ip-banner" class="mb-4 p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/30 flex flex-wrap items-center justify-between gap-3 text-xs shadow-lg">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-base border border-cyan-500/40 shrink-0">
+          <i class="fa-solid fa-network-wired"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">IP Thiết Bị Của Bạn:</span>
+            <span id="lb-client-ip-text" class="font-mono font-bold text-cyan-300 text-xs sm:text-sm">Đang nhận diện...</span>
+            <span id="lb-ip-status-badge" class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">● Đã Kết Nối</span>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-0.5">Dữ liệu thi đấu được đồng bộ và bảo lưu tự động theo IP máy khi bạn đạt điểm cao hơn.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-right">
+        <div class="p-2 px-3 rounded-xl bg-slate-950/80 border border-slate-800 text-center min-w-[110px]">
+          <span class="text-[9px] text-slate-400 block font-bold uppercase">Kỷ Lục Cao Nhất</span>
+          <strong id="lb-my-best-score" class="text-amber-400 font-arcade font-black text-sm sm:text-base">0 PTS</strong>
+        </div>
+        <div class="p-2 px-3 rounded-xl bg-slate-950/80 border border-slate-800 text-center min-w-[70px]">
+          <span class="text-[9px] text-slate-400 block font-bold uppercase">Lượt Chơi</span>
+          <strong id="lb-my-total-runs" class="text-emerald-400 font-bold text-xs sm:text-sm">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 3 Podium Cards -->
+    <div id="leaderboard-podium" class="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-5 items-end">
+      <!-- Rendered via JS -->
+    </div>
+
+    <!-- Filter Bar & Table Panel -->
+    <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex-1 flex flex-col space-y-3 min-h-[350px]">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+        <!-- Badge -->
+        <div class="flex items-center gap-2">
+          <span class="px-3.5 py-1.5 rounded-xl font-black text-xs bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 flex items-center gap-1.5 shadow-md">
+            <i class="fa-solid fa-dragon"></i> BẢNG VÀNG 24 HÙNG ẢI DIỆT QUÁI
+          </span>
+          <span class="text-[11px] text-emerald-400 font-semibold bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-600/40 hidden sm:inline-flex items-center gap-1">
+            <i class="fa-solid fa-circle-check"></i> 100% Kỷ lục người dùng thật
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span id="lb-records-count" class="text-xs text-slate-400 font-medium">Đang hiển thị: 0 kỷ lục thật</span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-600/40 flex items-center gap-1.5 shadow-sm" title="Dữ liệu bất biến được bảo vệ vĩnh viễn trên máy chủ">
+            <i class="fa-solid fa-lock text-emerald-400 text-[11px]"></i>
+            <span>Dữ liệu bất biến</span>
+          </span>
+          <button onclick="arenaEngine.refreshLeaderboard()" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm" title="Tải lại bảng xếp hạng mới nhất từ máy chủ">
+            <i class="fa-solid fa-arrows-rotate text-[11px] text-amber-400"></i>
+            <span>Làm mới</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div class="flex-1 overflow-x-auto overflow-y-auto max-h-[460px]">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 uppercase tracking-wider text-[11px]">
+              <th class="py-2.5 px-3 font-bold text-center w-14">Hạng</th>
+              <th class="py-2.5 px-3 font-bold">Dũng Sĩ & Lớp / MSSV</th>
+              <th class="py-2.5 px-3 font-bold">Tướng Sử Dụng</th>
+              <th class="py-2.5 px-3 font-bold">Ải Đạt & Thành Tích</th>
+              <th class="py-2.5 px-3 font-bold text-right">Tổng Điểm</th>
+              <th class="py-2.5 px-3 font-bold text-center">Ngày Đạt</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-table-body" class="divide-y divide-slate-800/60 font-medium">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- SCREEN 7: QUESTION BANK MANAGER ("BÍ TỊCH TRI THỨC")                   -->
+  <!-- ====================================================================== -->
+  <main id="screen-questions-manager" class="game-screen hidden relative z-10 flex-1 flex flex-col p-4 sm:p-6 max-w-6xl mx-auto w-full">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-black font-arcade text-white">BÍ TỊCH TRI THỨC</h2>
+        <p class="text-xs sm:text-sm text-slate-400">Quản lý và tùy chỉnh ngân hàng câu hỏi dùng trong các trận quyết đấu</p>
+      </div>
+      <button onclick="arenaEngine.showScreen('screen-home')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">
+        <i class="fa-solid fa-arrow-left mr-1"></i> Về Trang Chủ
+      </button>
+    </div>
+
+    <!-- BỘ ĐIỀU PHỐI ĐA DẠNG HÓA & CHỐNG TRÙNG LẶP (DYNAMIC FLOW) -->
+    <div class="mb-4 p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-900/60 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+      <div class="flex items-center gap-3 flex-wrap">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-arrows-spin text-sm"></i>
+          </div>
+          <div>
+            <div class="text-xs font-black text-slate-200">ĐIỀU PHỐI CÂU HỎI LINH HOẠT</div>
+            <div class="text-[11px] text-slate-400">Tự động chống lặp & đa dạng hóa nội dung thi đấu</div>
+          </div>
+        </div>
+
+        <!-- Mode Selector -->
+        <div class="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
+          <button id="flow-btn-balanced" onclick="arenaEngine.setQuestionFlowMode('balanced')" class="px-2.5 py-1 rounded-lg font-bold transition-all text-xs">
+            ⚖️ Cân Bằng 7 Chương
+          </button>
+          <button id="flow-btn-unseen" onclick="arenaEngine.setQuestionFlowMode('unseen')" class="px-2.5 py-1 rounded-lg font-bold transition-all text-xs">
+            🌟 100% Câu Mới
+          </button>
+          <button id="flow-btn-random" onclick="arenaEngine.setQuestionFlowMode('random')" class="px-2.5 py-1 rounded-lg font-bold transition-all text-xs">
+            🎲 Ngẫu Nhiên
+          </button>
+          <button id="flow-btn-trap" onclick="arenaEngine.setQuestionFlowMode('trap')" class="px-2.5 py-1 rounded-lg font-bold transition-all text-xs">
+            ⚡ Bẫy & Điểm A+
+          </button>
+        </div>
+
+        <!-- Dynamic Options Shuffling Switch -->
+        <label class="flex items-center gap-2 text-xs font-semibold text-slate-300 cursor-pointer select-none bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 hover:border-slate-700">
+          <input type="checkbox" id="chk-shuffle-options" onchange="arenaEngine.toggleShuffleOptions(this.checked)" class="rounded text-amber-500 focus:ring-0">
+          <span>Xáo 4 đáp án A/B/C/D</span>
+        </label>
+      </div>
+
+      <!-- Reset Seen Stats -->
+      <div class="flex items-center gap-3">
+        <div class="text-xs text-slate-300">
+          Đã chinh phục: <strong id="mgr-seen-count" class="text-amber-400">0</strong> / 4,803 câu (<span id="mgr-seen-pct" class="text-emerald-400">0%</span>)
+        </div>
+        <button onclick="arenaEngine.resetSeenQuestionsWithConfirm()" class="px-2.5 py-1 rounded-lg bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 text-xs font-bold border border-rose-800/60 transition-all flex items-center gap-1">
+          <i class="fa-solid fa-rotate-left text-[11px]"></i>
+          <span>Làm mới lịch sử</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 min-h-0">
+      
+      <!-- Left Panel: Pack List & Add Tools (5 Cols) -->
+      <div class="lg:col-span-5 space-y-4 flex flex-col">
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider">DANH SÁCH BỘ CÂU HỎI</h3>
+            <span class="text-xs text-amber-400 font-medium">Bấm để chọn bộ thi đấu</span>
+          </div>
+          <div id="pack-list-container" class="space-y-2 max-h-[220px] overflow-y-auto pr-1">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Add Question / Import Tab Box -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex-1 flex flex-col space-y-3">
+          <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+            <button onclick="switchManagerTab('single')" id="tab-btn-single" class="px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950">Thêm 1 Câu</button>
+            <button onclick="switchManagerTab('bulk')" id="tab-btn-bulk" class="px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-400 hover:text-white">Dán Hàng Loạt</button>
+          </div>
+
+          <!-- Tab 1: Single Question Form -->
+          <form id="form-single-question" onsubmit="handleSingleQuestionSubmit(event)" class="space-y-2 text-xs flex-1">
+            <div>
+              <label class="block text-slate-400 mb-1">Nội dung câu hỏi:</label>
+              <textarea id="inp-q-text" required rows="2" class="w-full p-2 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 focus:outline-none focus:border-amber-400" placeholder="Nhập câu hỏi..."></textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-slate-400">Đáp án A:</label>
+                <input id="inp-q-optA" required type="text" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-slate-200">
+              </div>
+              <div>
+                <label class="block text-slate-400">Đáp án B:</label>
+                <input id="inp-q-optB" required type="text" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-slate-200">
+              </div>
+              <div>
+                <label class="block text-slate-400">Đáp án C:</label>
+                <input id="inp-q-optC" required type="text" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-slate-200">
+              </div>
+              <div>
+                <label class="block text-slate-400">Đáp án D:</label>
+                <input id="inp-q-optD" required type="text" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-slate-200">
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-slate-400">Đáp án đúng:</label>
+                <select id="inp-q-correct" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-amber-400 font-bold">
+                  <option value="0">Đáp án A</option>
+                  <option value="1">Đáp án B</option>
+                  <option value="2">Đáp án C</option>
+                  <option value="3">Đáp án D</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400">Giải thích:</label>
+                <input id="inp-q-exp" type="text" class="w-full p-1.5 rounded bg-slate-950 border border-slate-700 text-slate-200" placeholder="Lý do đúng...">
+              </div>
+            </div>
+            <button type="submit" class="w-full py-2 rounded-lg bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 transition-all mt-2">
+              + THÊM VÀO BÍ TỊCH
+            </button>
+          </form>
+
+          <!-- Tab 2: Bulk Import Tool -->
+          <div id="form-bulk-import" class="hidden space-y-2 text-xs flex-1 flex-col">
+            <p class="text-slate-400">
+              Dán định dạng câu hỏi (Ví dụ: <em>Câu 1: ... A. ... B. ... Đáp án: B</em>) hoặc mã JSON:
+            </p>
+            <textarea id="inp-bulk-text" rows="7" class="w-full flex-1 p-2 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 font-mono text-[11px] focus:outline-none focus:border-amber-400" placeholder="Dán nội dung vào đây..."></textarea>
+            <button onclick="handleBulkImportSubmit()" class="w-full py-2 rounded-lg bg-indigo-600 text-white font-bold hover:bg-indigo-500 transition-all">
+              ⚡ XỬ LÝ & NHẬP VÀO BÍ TỊCH
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Active Pack Preview (7 Cols) -->
+      <div class="lg:col-span-7 p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+          <div>
+            <h3 id="active-pack-title" class="font-black text-amber-300 text-base">Bộ câu hỏi</h3>
+            <span id="active-pack-count" class="text-xs text-slate-400">0 câu</span>
+          </div>
+          <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold">
+            ĐANG ÁP DỤNG TRONG TRẬN
+          </span>
+        </div>
+        <div id="active-pack-questions-list" class="flex-1 overflow-y-auto space-y-2 pr-1 max-h-[500px]">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: HƯỚNG DẪN BÀN PHÍM & LUẬT CHƠI                                  -->
+  <!-- ====================================================================== -->
+  
+  <!-- ====================================================================== -->
+  <!-- MODAL: CHỌN CỔ VẬT TRI THỨC / RELIC PICK (modal-relic-pick)            -->
+  <!-- ====================================================================== -->
+  <div id="modal-relic-pick" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="max-w-2xl w-full rounded-3xl bg-slate-900 border-2 border-amber-400/90 p-6 space-y-5 shadow-2xl shadow-amber-500/25 text-center animate-zoomIn">
+      <div>
+        <div class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-black uppercase tracking-widest animate-pulse">
+          🎁 THƯỞNG CHIẾN TÍCH VƯỢT ẢI
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-black font-arcade text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-600 mt-1">
+          CHỌN 1 CỔ VẬT TRI THỨC
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-400">Chọn 1 pháp bảo tăng cường sức mạnh dũng sĩ cho các ải tiếp theo (Phong cách Roguelike)!</p>
+      </div>
+
+      <!-- 3 Relic Choice Cards -->
+      <div id="relic-choices-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="text-xs text-slate-500 italic">
+        Cổ vật sẽ đồng hành cùng dũng sĩ trong suốt hành trình vượt 7 ải
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: QUA MÀN VƯỢT ẢI THÀNH CÔNG (modal-stage-clear)                   -->
+  <!-- ====================================================================== -->
+  <div id="modal-stage-clear" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="max-w-md w-full rounded-3xl bg-slate-900 border-2 border-emerald-400/80 p-6 space-y-4 shadow-2xl shadow-emerald-500/20 text-center animate-zoomIn relative">
+      <!-- Close button to return to map -->
+      <button onclick="arenaEngine.returnToCampaignMap()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center border border-slate-700 cursor-pointer" title="Đóng & Về bản đồ ải">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="space-y-1">
+        <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-black uppercase tracking-widest animate-pulse">
+          STAGE CLEARED!
+        </div>
+        <h3 class="text-3xl font-black font-arcade text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-200">
+          VƯỢT ẢI THÀNH CÔNG!
+        </h3>
+        <p id="stage-clear-subtitle" class="text-xs text-slate-400">Bạn đã tiêu diệt thành công Ma Thú bảo vệ ải!</p>
+      </div>
+
+      <!-- Defeated Monster Card -->
+      <div class="p-3.5 rounded-2xl bg-slate-950 border border-emerald-500/30 flex items-center gap-3 text-left">
+        <div class="w-16 h-16 rounded-2xl overflow-hidden p-1 bg-rose-950/60 border border-rose-500/60 shrink-0 relative">
+          <img id="stage-clear-monster-avatar" src="" alt="Boss Defeated" class="w-full h-full object-cover">
+          <span class="absolute bottom-0 inset-x-0 bg-rose-600 text-white text-[9px] font-black text-center uppercase">ĐÃ DIỆT</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] font-bold text-rose-400 uppercase">MA THÚ BỊ ĐÁNH BẠI</div>
+          <div id="stage-clear-monster-name" class="font-black text-sm text-white truncate">Tên Quái Thú</div>
+          <p id="stage-clear-monster-quote" class="text-xs text-slate-400 italic mt-0.5 line-clamp-2">"..."</p>
+        </div>
+      </div>
+
+      <!-- Reward Breakdown -->
+      <div class="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs">
+        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Thưởng Ải</div>
+          <div id="stage-clear-bonus-pts" class="text-sm font-black text-amber-400 mt-0.5">+500 PTS</div>
+        </div>
+        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Hồi Máu</div>
+          <div class="text-sm font-black text-emerald-400 mt-0.5">+35 HP 💖</div>
+        </div>
+        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Tổng Điểm</div>
+          <div id="stage-clear-total-pts" class="text-sm font-black text-sky-400 mt-0.5">0 PTS</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="space-y-2 pt-1">
+        <button id="btn-next-stage" onclick="arenaEngine.proceedToNextStage()" class="w-full py-3.5 px-4 rounded-2xl font-black text-sm font-arcade uppercase tracking-wider bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 text-slate-950 shadow-xl shadow-emerald-500/25 hover:scale-102 active:scale-98 transition-all flex items-center justify-center gap-2">
+          <span>TIẾP TỤC ẢI TIẾP THEO</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="arenaEngine.openSaveScoreModal('campaign')" class="py-2.5 px-3 rounded-xl text-xs font-bold bg-amber-500/20 hover:bg-amber-500 hover:text-slate-950 text-amber-300 border border-amber-500/40 transition-all flex items-center justify-center gap-1">
+            <i class="fa-solid fa-trophy"></i> Lưu Kỷ Lục
+          </button>
+          <button onclick="arenaEngine.copyShareChallengeText('stageclear')" class="py-2.5 px-3 rounded-xl text-xs font-bold bg-sky-950 hover:bg-sky-900 text-sky-300 border border-sky-700/60 transition-all flex items-center justify-center gap-1" title="Khoe chiến tích & rủ bạn đua top">
+            <i class="fa-solid fa-share-nodes text-sky-400"></i> Khoe Kỷ Lục
+          </button>
+        </div>
+        <button onclick="arenaEngine.returnToCampaignMap()" class="w-full py-2.5 px-3 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-amber-500/40 transition-all flex items-center justify-center gap-1.5 shadow cursor-pointer">
+          <i class="fa-solid fa-map text-amber-400 mr-1"></i> Về Bản Đồ Ải
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: DŨNG SĨ GỤC NGÃ / GAME OVER (modal-game-over)                   -->
+  <!-- ====================================================================== -->
+  <div id="modal-game-over" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="max-w-md w-full rounded-3xl bg-slate-900 border-2 border-rose-500/80 p-6 space-y-4 shadow-2xl shadow-rose-500/20 text-center animate-zoomIn relative">
+      <!-- Close button to return to map -->
+      <button onclick="arenaEngine.returnToCampaignMap()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center border border-slate-700 cursor-pointer" title="Đóng & Về bản đồ ải">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="space-y-1">
+        <div class="text-5xl font-black font-arcade text-rose-500 tracking-tighter drop-shadow-[0_0_20px_rgba(244,63,94,0.8)]">
+          DEFEATED!
+        </div>
+        <h3 class="text-2xl font-black text-white font-arcade">DŨNG SĨ ĐÃ GỤC NGÃ</h3>
+        <p class="text-xs text-slate-400">Ma Thú phản kích quá mãnh liệt. Hãy củng cố tri thức để phục thù!</p>
+      </div>
+
+      <!-- Monster Taunt Box -->
+      <div class="p-3.5 rounded-2xl bg-slate-950 border border-rose-900/60 flex items-center gap-3 text-left">
+        <div class="w-14 h-14 rounded-2xl overflow-hidden p-0.5 bg-rose-950 border border-rose-500/50 shrink-0">
+          <img id="gameover-monster-avatar" src="" alt="Boss Taunt" class="w-full h-full object-cover">
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-[10px] font-bold text-rose-400 uppercase">LỜI THÁCH THỨC CỦA MA THÚ</div>
+          <div id="gameover-monster-name" class="font-black text-xs text-white truncate">Tên Quái Thú</div>
+          <p id="gameover-monster-quote" class="text-xs text-slate-400 italic mt-0.5 line-clamp-2">"..."</p>
+        </div>
+      </div>
+
+      <!-- Run Summary Stats -->
+      <div class="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs">
+        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Ải Dừng Chân</div>
+          <div id="gameover-stage-reached" class="text-sm font-black text-rose-400 mt-0.5">Ải 1</div>
+        </div>
+        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Tổng Điểm</div>
+          <div id="gameover-total-score" class="text-sm font-black text-amber-400 mt-0.5">0 PTS</div>
+        </div>
+        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="text-[10px] text-slate-400 font-bold uppercase">Max Combo</div>
+          <div id="gameover-max-combo" class="text-sm font-black text-cyan-400 mt-0.5">x0</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="space-y-2 pt-1">
+        <button onclick="arenaEngine.retryCurrentCampaignStage()" class="w-full py-3.5 px-4 rounded-2xl font-black text-sm font-arcade uppercase tracking-wider bg-gradient-to-r from-amber-500 via-rose-500 to-red-600 text-slate-950 hover:scale-102 active:scale-98 transition-all flex items-center justify-center gap-2 shadow-xl shadow-rose-500/30">
+          <i class="fa-solid fa-fire text-amber-300 animate-bounce"></i>
+          <span>🔥 PHỤC THÙ NGAY - KHÔNG THỂ BỊ COI THƯỜNG!</span>
+        </button>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="arenaEngine.openSaveScoreModal('campaign')" class="py-2.5 px-3 rounded-xl text-xs font-bold bg-amber-500/20 hover:bg-amber-500 hover:text-slate-950 text-amber-300 border border-amber-500/40 transition-all flex items-center justify-center gap-1">
+            <i class="fa-solid fa-trophy"></i> Lưu Kỷ Lục
+          </button>
+          <button onclick="arenaEngine.copyShareChallengeText('gameover')" class="py-2.5 px-3 rounded-xl text-xs font-bold bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 border border-indigo-700/60 transition-all flex items-center justify-center gap-1" title="Kêu gọi bạn bè giải cứu">
+            <i class="fa-solid fa-share-nodes"></i> Thách Đấu Bạn
+          </button>
+        </div>
+        <button onclick="arenaEngine.returnToCampaignMap()" class="w-full py-2.5 px-3 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-amber-500/40 transition-all flex items-center justify-center gap-1.5 shadow cursor-pointer">
+          <i class="fa-solid fa-map text-amber-400 mr-1"></i> Về Bản Đồ Ải
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: LƯU THÀNH TÍCH ĐUA TOP (modal-save-score)                       -->
+  <!-- ====================================================================== -->
+  <div id="modal-save-score" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="max-w-md w-full rounded-3xl bg-slate-900 border-2 border-amber-400/80 p-6 space-y-4 shadow-2xl shadow-amber-500/20 text-left animate-zoomIn">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg">
+            🏆
+          </div>
+          <div>
+            <h3 class="text-base font-black text-white font-arcade uppercase">GHI DANH BẢNG VÀNG HUST</h3>
+            <p class="text-[11px] text-slate-400">Lưu lại thành tích để đua top cùng các dũng sĩ khác</p>
+          </div>
+        </div>
+        <button onclick="document.getElementById('modal-save-score').classList.add('hidden')" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Current Run Summary Card -->
+      <div class="p-3.5 rounded-2xl bg-slate-950 border border-amber-500/30 space-y-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <img id="save-score-hero-avatar" src="assets/avatars/bachkhoa.jpg" alt="Hero" class="w-10 h-10 rounded-xl object-cover border border-amber-400/60">
+            <div>
+              <div id="save-score-hero-name" class="font-black text-xs text-white">Chiến Binh Bách Khoa</div>
+              <div id="save-score-mode-badge" class="text-[10px] text-amber-400 font-bold uppercase">Chế độ: Vượt Ải Diệt Quái</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-[10px] text-slate-400 font-bold uppercase">Tổng Điểm</div>
+            <div id="save-score-pts-badge" class="text-lg font-black text-amber-400 font-arcade">0 PTS</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800/80 text-center text-xs">
+          <div>
+            <span class="text-[10px] text-slate-400 block">Ải Chinh Phục</span>
+            <strong id="save-score-stage-badge" class="text-emerald-400 font-black">Ải 1</strong>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block">Max Combo</span>
+            <strong id="save-score-combo-badge" class="text-cyan-400 font-black">x0</strong>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block">Tỉ Lệ Đúng</span>
+            <strong id="save-score-acc-badge" class="text-amber-300 font-black">100%</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Inputs -->
+      <form id="form-save-score" onsubmit="handleSaveScoreSubmit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">
+            <i class="fa-solid fa-user text-amber-400 mr-1"></i> Tên Dũng Sĩ / Họ & Tên Người Chơi:
+          </label>
+          <input id="inp-player-name" required type="text" maxlength="30" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-bold placeholder-slate-500 focus:outline-none focus:border-amber-400 text-sm" placeholder="VD: Nguyễn Đức Minh (K67)">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">
+            <i class="fa-solid fa-graduation-cap text-sky-400 mr-1"></i> Lớp / Viện / Mã Sinh Viên:
+          </label>
+          <input id="inp-player-class" type="text" maxlength="30" class="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 text-xs" placeholder="VD: IT1-02 • K67 HUST">
+        </div>
+
+        <div class="pt-2 flex items-center gap-2">
+          <button type="submit" class="flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm font-arcade uppercase tracking-wider bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-lg shadow-amber-500/25 hover:scale-102 active:scale-98 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>LƯU LÊN BẢNG VÀNG</span>
+          </button>
+          <button type="button" onclick="document.getElementById('modal-save-score').classList.add('hidden')" class="py-3 px-4 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">
+            Đóng
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-rules" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="max-w-md w-full rounded-3xl bg-slate-900 border border-slate-700 p-6 space-y-4 shadow-2xl animate-zoomIn">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-gamepad"></i>
+          </div>
+          <h3 class="text-lg font-black text-white font-arcade">HƯỚNG DẪN ĐIỀU KHIỂN & LUẬT CHƠI</h3>
+        </div>
+        <button onclick="toggleRulesModal(false)" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs sm:text-sm text-slate-300">
+        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 space-y-2">
+          <div class="font-bold text-amber-400 flex items-center gap-2">
+            <i class="fa-solid fa-bell"></i>
+            <span>BẤM CHUÔNG GIÀNH QUYỀN TRẢ LỜI:</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="p-2 rounded bg-slate-900 border border-amber-500/30 text-amber-300">
+              <strong>Đội 1:</strong> Phím <strong>W</strong> hoặc <strong>Q</strong>
+            </div>
+            <div class="p-2 rounded bg-slate-900 border border-cyan-500/30 text-cyan-300">
+              <strong>Đội 2:</strong> Phím <strong>P</strong> hoặc <strong>Enter</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 space-y-2">
+          <div class="font-bold text-sky-400 flex items-center gap-2">
+            <i class="fa-solid fa-check-double"></i>
+            <span>CHỌN ĐÁP ÁN (A, B, C, D):</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="p-1.5 rounded bg-slate-900 border border-rose-500/40 text-rose-300">
+              Phím <strong>1</strong> hoặc <strong>A</strong>: Đáp án A
+            </div>
+            <div class="p-1.5 rounded bg-slate-900 border border-sky-500/40 text-sky-300">
+              Phím <strong>2</strong> hoặc <strong>B</strong>: Đáp án B
+            </div>
+            <div class="p-1.5 rounded bg-slate-900 border border-amber-500/40 text-amber-300">
+              Phím <strong>3</strong> hoặc <strong>C</strong>: Đáp án C
+            </div>
+            <div class="p-1.5 rounded bg-slate-900 border border-emerald-500/40 text-emerald-300">
+              Phím <strong>4</strong> hoặc <strong>D</strong>: Đáp án D
+            </div>
+          </div>
+        </div>
+
+        <!-- RPG CAMPAIGN GUIDE -->
+        <div class="p-3 rounded-xl bg-rose-950/60 border border-rose-700/60 space-y-1.5 text-xs text-rose-200">
+          <div class="font-bold text-rose-300 flex items-center gap-2">
+            <i class="fa-solid fa-wand-magic-sparkles text-rose-400"></i>
+            <span>VŨ KHÍ & PHÁP BẢO VƯỢT ẢI (CHẾ ĐỘ BOSS RAID):</span>
+          </div>
+          <div>• <strong>Bình Máu (Phím H)</strong>: Hồi ngay +35 HP khi dũng sĩ sắp kiệt sức.</div>
+          <div>• <strong>Kính Chiếu Yêu (Phím E)</strong>: Triệt tiêu 2 đáp án sai (50/50) tức thì.</div>
+          <div>• <strong>Kim Cang Hộ Thể (Phím S)</strong>: Tạo khiên chặn 100% phản kích nếu trả lời sai.</div>
+          <div>• <strong>Đồng Hồ Cát (Phím T)</strong>: Thêm +15 giây suy nghĩ câu hỏi hóc búa.</div>
+          <div>• <strong>Cơ Chế Phá Chiêu (Break Stun)</strong>: Khi Quái phát sáng đỏ nộ khí cực đại, trả lời đúng sẽ PHÁ CHIÊU, làm quái choáng và dính thêm +50% sát thương!</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-1">
+          <div class="font-bold text-amber-300">⚔️ QUY TẮC CHIẾN ĐẤU:</div>
+          <div>• Trả lời đúng trong 5s đầu: Đòn đánh <strong>Nhanh Như Chớp</strong> (+4 sát thương).</div>
+          <div>• Trả lời đúng tích lũy Combo và nạp thanh <strong>Năng lượng Tuyệt Kỹ</strong> (100% kích hoạt Tuyệt Kỹ cực mạnh!).</div>
+          <div>• Trả lời sai sẽ bị mất lượt hoặc đối phương phản kích.</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-indigo-950/60 border border-indigo-700/60 space-y-1.5 text-xs text-indigo-200">
+          <div class="font-bold text-indigo-300 flex items-center gap-2">
+            <i class="fa-solid fa-shuffle text-indigo-400"></i>
+            <span>ĐỔI MỚI LINH HOẠT & CHỐNG TRÙNG LẶP:</span>
+          </div>
+          <div>• Phím <strong>R</strong>: <strong>Đổi câu hỏi khác</strong> từ kho 4,800+ câu nếu muốn đổi thử thách.</div>
+          <div>• <strong>Chống trùng lặp tự động</strong>: Ưu tiên bốc câu bạn chưa từng gặp trong các trận trước.</div>
+          <div>• <strong>Hoán đổi đáp án thông minh</strong>: 4 đáp án A, B, C, D được xáo ngẫu nhiên vị trí để tránh nhớ vẹt.</div>
+        </div>
+      </div>
+
+      <button onclick="toggleRulesModal(false)" class="w-full py-2.5 rounded-xl bg-amber-500 text-slate-950 font-black hover:bg-amber-400 transition-all uppercase">
+        ĐÃ HIỂU, VÀO TRẬN THÔI!
+      </button>
+    </div>
+  </div>
+
+  <!-- SCRIPT LIBRARIES: DATA, AUDIO, ENGINE -->
+  <script src="data.js?v=3.3.0"></script>
+  <script src="data_bank.js?v=3.3.0"></script>
+  <script>
+    if (typeof QUIZ_DATA !== 'undefined') window.QUIZ_DATA = QUIZ_DATA;
+    if (typeof QUIZ_BANK !== 'undefined') window.QUIZ_BANK = QUIZ_BANK;
+    if (typeof OFFICIAL_SETS_DATA !== 'undefined') window.OFFICIAL_SETS_DATA = OFFICIAL_SETS_DATA;
+  </script>
+  <script src="game_data.js?v=3.3.0"></script>
+  <script src="game_audio.js?v=3.3.0"></script>
+  <script src="game_engine.js?v=3.3.1"></script>
+
+  <!-- APP CONTROLLER GLUE -->
+  <script>
+    // --- BACKGROUND PARTICLE CANVAS ---
+    (function initStarfield() {
+      const canvas = document.getElementById("bg-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      const stars = Array.from({ length: 60 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.4 + 0.1,
+        color: Math.random() > 0.5 ? "#ffd700" : "#00e5ff"
+      }));
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        stars.forEach(s => {
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = s.color;
+          ctx.fill();
+          s.y -= s.speed;
+          if (s.y < 0) s.y = height;
+        });
+        requestAnimationFrame(render);
+      }
+      render();
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+    })();
+
+    // --- SOUND TOGGLE ---
+    function toggleSound() {
+      if (window.gameAudio) {
+        const isMuted = window.gameAudio.toggleMute();
+        const icon = document.getElementById("sound-icon");
+        if (icon) {
+          icon.className = isMuted ? "fa-solid fa-volume-xmark text-slate-500" : "fa-solid fa-volume-high text-amber-400";
+        }
+      }
+    }
+
+    // --- GAME MODE SELECT ---
+    function setGameMode(mode) {
+      if (window.arenaEngine) {
+        window.arenaEngine.gameMode = mode;
+        document.querySelectorAll(".mode-select-btn").forEach(b => {
+          b.className = "mode-select-btn p-3 rounded-xl border border-slate-700 bg-slate-800/80 text-slate-300 font-bold text-xs sm:text-sm text-center hover:bg-slate-700 transition-all";
+        });
+        const activeBtn = document.getElementById(`mode-btn-${mode}`);
+        if (activeBtn) {
+          activeBtn.className = "mode-select-btn p-3 rounded-xl border-2 border-amber-400 bg-amber-500/20 text-amber-300 font-bold text-xs sm:text-sm text-center transition-all shadow-md shadow-amber-500/10";
+        }
+        if (window.gameAudio) window.gameAudio.playSelect();
+      }
+    }
+
+    // --- HERO SELECTION HELPERS ---
+    function setPickingSlot(slot) {
+      if (window.arenaEngine) {
+        window.arenaEngine.activeHeroSlot = slot;
+        document.getElementById("picking-indicator").textContent = slot === "team1" ? "ĐỘI 1" : "ĐỘI 2";
+        if (window.gameAudio) window.gameAudio.playSelect();
+      }
+    }
+
+    function filterHeroGrid(role) {
+      if (window.arenaEngine) {
+        window.arenaEngine.renderHeroSelectionGrid(role);
+        document.querySelectorAll(".hero-filter-btn").forEach(btn => {
+          if (btn.textContent.includes(role) || (role === "all" && btn.textContent.includes("Tất Cả"))) {
+            btn.className = "hero-filter-btn px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold";
+          } else {
+            btn.className = "hero-filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-bold";
+          }
+        });
+      }
+    }
+
+    // --- RULES MODAL TOGGLE ---
+    function toggleRulesModal(show) {
+      const modal = document.getElementById("modal-rules");
+      if (modal) {
+        if (show) modal.classList.remove("hidden");
+        else modal.classList.add("hidden");
+      }
+      if (window.gameAudio) window.gameAudio.playSelect();
+    }
+
+    
+    // --- LEADERBOARD & SAVE SCORE HELPERS ---
+    function handleSaveScoreSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("inp-player-name").value.trim();
+      const cls = document.getElementById("inp-player-class").value.trim();
+      if (!name) return;
+      if (window.arenaEngine) {
+        window.arenaEngine.addLeaderboardRecord(name, cls);
+        document.getElementById("modal-save-score").classList.add("hidden");
+        window.arenaEngine.showScreen("screen-leaderboard");
+      }
+    }
+
+    // --- QUESTION MANAGER TABS & SUBMITS ---
+    function switchManagerTab(tab) {
+      const formSingle = document.getElementById("form-single-question");
+      const formBulk = document.getElementById("form-bulk-import");
+      const btnSingle = document.getElementById("tab-btn-single");
+      const btnBulk = document.getElementById("tab-btn-bulk");
+
+      if (tab === "single") {
+        formSingle.classList.remove("hidden");
+        formBulk.classList.add("hidden");
+        btnSingle.className = "px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950";
+        btnBulk.className = "px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-400 hover:text-white";
+      } else {
+        formSingle.classList.add("hidden");
+        formBulk.classList.remove("hidden");
+        btnSingle.className = "px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-400 hover:text-white";
+        btnBulk.className = "px-3 py-1 rounded-lg text-xs font-bold bg-amber-500 text-slate-950";
+      }
+    }
+
+    function handleSingleQuestionSubmit(e) {
+      e.preventDefault();
+      const text = document.getElementById("inp-q-text").value;
+      const optA = document.getElementById("inp-q-optA").value;
+      const optB = document.getElementById("inp-q-optB").value;
+      const optC = document.getElementById("inp-q-optC").value;
+      const optD = document.getElementById("inp-q-optD").value;
+      const ans = document.getElementById("inp-q-correct").value;
+      const exp = document.getElementById("inp-q-exp").value;
+
+      window.arenaEngine.addCustomQuestion(text, optA, optB, optC, optD, ans, exp);
+      document.getElementById("form-single-question").reset();
+      alert("Đã thêm câu hỏi vào bộ Bí Tịch Tri Thức thành công!");
+    }
+
+    function handleBulkImportSubmit() {
+      const raw = document.getElementById("inp-bulk-text").value;
+      if (!raw.trim()) {
+        alert("Vui lòng dán văn bản câu hỏi vào khung!");
+        return;
+      }
+      const count = window.arenaEngine.importBulkQuestions(raw);
+      if (count > 0) {
+        alert(`Đã nạp thành công ${count} câu hỏi vào Bí Tịch Tri Thức!`);
+        document.getElementById("inp-bulk-text").value = "";
+      } else {
+        alert("Không nhận diện được định dạng câu hỏi. Vui lòng kiểm tra lại định dạng!");
+      }
+    }
+
+    // --- ONLOAD INITIALIZATION ---
+    window.addEventListener("DOMContentLoaded", () => {
+      // Sync initial pack label on Home
+      const activePack = QUESTION_PACKS.find(p => p.id === arenaEngine.activePackId);
+      if (activePack) {
+        document.getElementById("home-pack-name").textContent = activePack.name;
+      }
+    });
+  </script>
+</body>
+</html>

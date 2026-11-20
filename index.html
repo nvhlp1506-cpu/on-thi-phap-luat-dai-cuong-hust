@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ôn Thi Kết Thúc Học Phần: Pháp Luật Đại Cương - ĐH Bách Khoa Hà Nội (HUST)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col font-sans antialiased">
+
+  <!-- TOP HEADER / NAVBAR (HUST BRANDING) -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between min-h-[4rem] sm:min-h-[4.5rem] py-2 sm:py-2.5 gap-3">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-3 shrink-0">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-red-800 to-red-600 flex items-center justify-center text-white shadow-md shadow-red-900/20 shrink-0">
+            <i class="fa-solid fa-scale-balanced text-lg sm:text-xl"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-black uppercase tracking-wider text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200 inline-flex items-center gap-1">
+                <i class="fa-solid fa-graduation-cap"></i> ĐH Bách Khoa Hà Nội
+              </span>
+              <span class="text-[11px] text-slate-400 font-medium hidden xl:inline">EM1170 • SSH1131</span>
+            </div>
+            <h1 class="text-sm sm:text-base font-black text-slate-900 tracking-tight leading-snug whitespace-nowrap mt-0.5">
+              Pháp Luật Đại Cương <span class="font-semibold text-slate-500 text-xs hidden sm:inline">— Ôn Thi Cuối Kỳ</span>
+            </h1>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden md:flex items-center gap-1 p-1 bg-slate-100 rounded-2xl border border-slate-200 shrink-0">
+          <button data-tab="quiz" class="nav-tab-btn active px-3 lg:px-3.5 py-1.5 font-bold text-xs sm:text-sm rounded-xl text-slate-600 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Trắc Nghiệm</span>
+          </button>
+          <button data-tab="search" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 font-bold text-xs sm:text-sm rounded-xl text-slate-600 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Tra Cứu</span>
+          </button>
+          <button data-tab="summary" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 font-bold text-xs sm:text-sm rounded-xl text-slate-600 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>Sổ Tay (13 Bảng)</span>
+          </button>
+          <button data-tab="flashcard" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 font-bold text-xs sm:text-sm rounded-xl text-slate-600 flex items-center gap-1.5 transition">
+            <i class="fa-regular fa-clone"></i>
+            <span>Flashcard 3D</span>
+          </button>
+          <button data-tab="traps" class="nav-tab-btn px-3 lg:px-3.5 py-1.5 font-bold text-xs sm:text-sm rounded-xl text-slate-600 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>10 Bẫy Điểm A+</span>
+          </button>
+        </nav>
+
+        <!-- Print Action -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="window.print()" class="px-3 py-1.5 text-xs font-bold rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 flex items-center gap-1.5 transition shadow-xs">
+            <i class="fa-solid fa-print text-red-700"></i>
+            <span class="hidden sm:inline">In tài liệu</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Tab Bar -->
+      <div class="flex md:hidden overflow-x-auto py-2 gap-1.5 border-t border-slate-100">
+        <button data-tab="quiz" class="nav-tab-btn active px-3 py-1.5 font-bold text-xs rounded-lg text-slate-600 shrink-0 flex items-center gap-1">
+          <i class="fa-solid fa-list-check"></i> Trắc Nghiệm
+        </button>
+        <button data-tab="search" class="nav-tab-btn px-3 py-1.5 font-bold text-xs rounded-lg text-slate-600 shrink-0 flex items-center gap-1">
+          <i class="fa-solid fa-magnifying-glass"></i> Tra Cứu
+        </button>
+        <button data-tab="summary" class="nav-tab-btn px-3 py-1.5 font-bold text-xs rounded-lg text-slate-600 shrink-0 flex items-center gap-1">
+          <i class="fa-solid fa-book-bookmark"></i> Sổ Tay
+        </button>
+        <button data-tab="flashcard" class="nav-tab-btn px-3 py-1.5 font-bold text-xs rounded-lg text-slate-600 shrink-0 flex items-center gap-1">
+          <i class="fa-regular fa-clone"></i> Thẻ Nhớ
+        </button>
+        <button data-tab="traps" class="nav-tab-btn px-3 py-1.5 font-bold text-xs rounded-lg text-slate-600 shrink-0 flex items-center gap-1">
+          <i class="fa-solid fa-shield-halved"></i> 10 Bẫy Thi
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUB-BANNER: OFFICIAL REFERENCES ACCREDITATION -->
+  <div class="bg-gradient-to-r from-red-900 via-rose-950 to-slate-900 text-white py-2 px-4 text-xs font-medium border-b border-red-950 no-print">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="bg-amber-400 text-slate-950 px-2 py-0.5 rounded font-black uppercase text-[10px] tracking-wide inline-flex items-center gap-1 shrink-0">
+          <i class="fa-solid fa-book"></i> Giáo trình chuẩn HUST
+        </span>
+        <span class="text-slate-200 text-xs">
+          PGS.TS Vũ Quang (2018, NXB Bách Khoa) • PGS.TS Phạm Duy Nghĩa (2011, CAND) • Hướng dẫn học PGS.TS Vũ Quang (2019)
+        </span>
+      </div>
+      <div class="text-amber-300 font-bold text-xs hidden md:inline-flex items-center gap-1 shrink-0">
+        <i class="fa-solid fa-check-circle"></i> Chuẩn thi Kết thúc học phần 40 câu / 45 phút
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: TRẮC NGHIỆM 4 ĐÁP ÁN (QUIZ & EXAM MODE)                    -->
+    <!-- ================================================================= -->
+    <div id="tab-quiz" class="tab-content space-y-6">
+
+      <!-- Unified HUST Exam & Practice Control Center -->
+      <div class="control-panel-card p-4 sm:p-5 space-y-3.5">
+        
+        <!-- Top Row: Exam Code, Bank Stats & Mode Toggle / Timer -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <!-- Left: Exam identity & status -->
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span id="current-exam-code" class="text-xs font-black uppercase tracking-wider bg-red-700 text-white px-3 py-1 rounded-xl shadow-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-file-signature"></i> MÃ ĐỀ: HUST-KTPH-401
+            </span>
+            <span class="text-xs text-slate-600 font-semibold flex items-center gap-1.5">
+              <i class="fa-solid fa-database text-amber-500"></i> Ngân hàng: <strong class="text-slate-900 font-bold">670 câu độc bản chuẩn HUST & LMS (100% không trùng lặp)</strong>
+            </span>
+            <span class="text-xs text-slate-300 hidden md:inline">|</span>
+            <span class="text-xs text-slate-500 font-medium hidden md:inline flex items-center gap-1">
+              <i class="fa-regular fa-clock text-slate-400"></i> Chuẩn thi: <strong class="text-slate-700 font-semibold">40 câu / 45 phút</strong>
+            </span>
+          </div>
+
+          <!-- Right: Mode switcher (Practice vs Exam) + Timer badge -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <div class="inline-flex items-center p-1 bg-slate-100 rounded-xl border border-slate-200">
+              <button id="btn-mode-practice" class="px-3.5 py-1.5 rounded-lg font-bold text-xs sm:text-sm bg-red-700 text-white shadow-xs transition flex items-center gap-1.5">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Luyện Tập</span>
+              </button>
+              <button id="btn-mode-exam" class="px-3.5 py-1.5 rounded-lg font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span>Thi Thử (45 Phút)</span>
+              </button>
+            </div>
+
+            <!-- Timer badge (Active in exam mode) -->
+            <div id="exam-timer-badge" class="hidden items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-mono font-black text-sm shadow-sm animate-pulse">
+              <i class="fa-solid fa-clock"></i>
+              <span id="timer-count">45:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Selectors (Set, Length, Category) & Shuffle Action -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+          <!-- Bộ đề thi (Official Sets) -->
+          <div class="lg:col-span-5 flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+            <label for="select-exam-type" class="text-xs font-bold text-slate-600 whitespace-nowrap flex items-center gap-1">
+              <i class="fa-solid fa-layer-group text-red-700"></i> Bộ đề:
+            </label>
+            <select id="select-exam-type" class="hust-select flex-1 bg-transparent text-xs font-bold text-slate-800 outline-none cursor-pointer">
+                <optgroup label="📋 ĐỀ THI KẾT THÚC HỌC PHẦN CHÍNH THỨC (CLB HỖ TRỢ HỌC TẬP HUST)">
+                  <option value="exam_set_1" selected>🎯 Đề số 01: Chuẩn KTPH 40 câu (Kỳ 2024.1 - Đề 401 - Nguyên bản)</option>
+                  <option value="exam_set_2">🎯 Đề số 02: Chuẩn KTPH 40 câu (Kỳ 2023.2 - Đề 402 - Nguyên bản)</option>
+                  <option value="exam_set_3">🎯 Đề số 03: Chuẩn Slide & Bài Giảng HUST (Đề 403)</option>
+                  <option value="exam_set_4">🎯 Đề số 04: Chuẩn Thẩm Quyền & Bộ Máy Nhà Nước (Đề 404)</option>
+                  <option value="exam_set_5">🎯 Đề số 05: Đề Tinh Hoa Điểm A+ (Đề 405)</option>
+                  <option value="exam_set_trap">⚡ Đề số 06: Chuyên đề 40 Câu Bẫy & Điểm Liệt (Đề 406)</option>
+                </optgroup>
+                <optgroup label="🎓 BỘ ĐỀ ÔN TẬP ELEARNING LMS BÁCH KHOA (QUIZ 1 - 6)">
+                  <option value="exam_set_lms">🎓 Đề số 07: Trọng tâm LMS Bách Khoa (Quiz 1-6 - Đề 407)</option>
+                  <option value="exam_set_lms2">🎓 Đề số 08: Thực chiến LMS Bách Khoa (Quiz 1-6 - Đề 408)</option>
+                  <option value="exam_set_lms3">🎓 Đề số 09: Chuyên sâu LMS Bách Khoa (Quiz 1-6 - Đề 409)</option>
+                  <option value="exam_set_lms4">🎓 Đề số 10: Tổng lực LMS Bách Khoa (Quiz 1-6 - Đề 410)</option>
+                  <option value="exam_set_lms5">🎓 Đề số 11: Nâng cao LMS Bách Khoa (Quiz 1-6 - Đề 411)</option>
+                </optgroup>
+                <optgroup label="🏆 BỘ ĐỀ THI THỬ TOÀN DIỆN & VỀ ĐÍCH ĐIỂM 10 (40 CÂU / 45 PHÚT)">
+                  <option value="exam_set_th12">🏆 Đề số 12: Đề Thi Thử Toàn Diện HUST (Đề 412)</option>
+                  <option value="exam_set_th13">🏆 Đề số 13: Đề Thi Thử Chuyên Sâu HUST (Đề 413)</option>
+                  <option value="exam_set_th14">🏆 Đề số 14: Đề Thi Đột Phá Điểm 10 (Đề 414)</option>
+                  <option value="exam_set_th15">🏆 Đề số 15: Đề Khóa Đích Kết Thúc Học Phần (Đề 415)</option>
+                </optgroup>
+                <optgroup label="🎲 CHẾ ĐỘ THI THỬ NGẪU NHIÊN">
+                  <option value="random">🎲 Đổi Đề Ngẫu Nhiên Mới (40 câu / 45 phút - Tự động tránh lặp câu vừa làm)</option>
+                </optgroup>
+              </select>
+          </div>
+
+          <!-- Độ dài / Số câu -->
+          <div class="lg:col-span-3 flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+            <label for="select-exam-size" class="text-xs font-bold text-slate-600 whitespace-nowrap flex items-center gap-1">
+              <i class="fa-solid fa-list-ol text-red-700"></i> Số câu:
+            </label>
+            <select id="select-exam-size" class="hust-select flex-1 bg-transparent text-xs font-bold text-slate-800 outline-none cursor-pointer">
+              <option value="40" selected>40 câu (45 phút - Chuẩn HUST)</option>
+              <option value="25">25 câu (30 phút - Cấp tốc)</option>
+              <option value="50">50 câu (55 phút - Mở rộng)</option>
+              <option value="60">60 câu (65 phút - Luyện sâu)</option>
+              <option value="100">100 câu (Toàn diện)</option>
+            </select>
+          </div>
+
+          <!-- Lọc chuyên đề (Chỉ có hiệu lực khi Luyện tập) -->
+          <div id="quiz-filter-container" class="lg:col-span-3 flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 transition">
+            <label for="quiz-category-select" class="text-xs font-bold text-slate-600 whitespace-nowrap flex items-center gap-1">
+              <i class="fa-solid fa-filter text-red-700"></i> Lọc:
+            </label>
+            <select id="quiz-category-select" class="hust-select flex-1 bg-transparent text-xs font-semibold text-slate-800 outline-none cursor-pointer">
+              <option value="all">Tất cả các chương</option>
+              <option value="ch1_intro">Chương 1: Nhập môn PLĐC</option>
+              <option value="ch2_state">Chương 2: Cơ bản về Nhà nước</option>
+              <option value="ch3_apparatus">Chương 3: Bộ máy Nhà nước VN</option>
+              <option value="ch4_law">Chương 4: Cơ bản về Pháp luật</option>
+              <option value="ch5_world">Chương 5: HTPL trên thế giới</option>
+              <option value="ch6_vn_law">Chương 6: Hệ thống PL Việt Nam</option>
+              <option value="ch7_ip">Chương 7: SHTT & KH-CN</option>
+            </select>
+          </div>
+
+          <!-- Nút Đổi Đề Khác -->
+          <div class="lg:col-span-1 flex justify-end">
+            <button id="btn-shuffle-exam" class="w-full h-full py-2 px-3 bg-red-700 hover:bg-red-800 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 active:scale-95" title="Đổi sang bộ đề ngẫu nhiên khác">
+              <i class="fa-solid fa-shuffle"></i>
+              <span class="sm:hidden lg:inline">Đổi đề</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Layout: Question Area (Left) + Question Matrix / Controls (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left: Question & Answers (8 cols) -->
+        <div class="lg:col-span-8 space-y-4">
+          
+          <!-- Progress Bar & Status -->
+          <div class="bg-white p-4 sm:p-4.5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-2.5 py-1 rounded-lg border border-red-200 flex items-center gap-1">
+                  Câu <span id="current-q-index">1</span>/<span id="total-q-count">40</span>
+                </span>
+                <span id="current-q-chapter" class="text-xs text-slate-600 font-bold truncate max-w-xs hidden sm:inline">
+                  Chương 2: Những vấn đề cơ bản về Nhà nước
+                </span>
+              </div>
+
+              <!-- Controls: Flag, Bookmark, Sound, Fullscreen -->
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button id="btn-flag-review" class="px-2.5 py-1.5 rounded-xl text-slate-500 hover:text-amber-600 hover:bg-amber-50 text-xs font-bold flex items-center gap-1 transition border border-slate-200/80" title="Cắm cờ xem lại câu này (Phím F)">
+                  <i class="fa-solid fa-flag"></i>
+                  <span class="hidden sm:inline">Cắm cờ</span>
+                  <span class="text-[10px] text-slate-400 font-mono hidden md:inline">[F]</span>
+                </button>
+                <button id="btn-bookmark-q" class="px-2.5 py-1.5 rounded-xl text-slate-500 hover:text-amber-600 hover:bg-amber-50 text-xs font-bold flex items-center gap-1 transition border border-slate-200/80" title="Lưu câu hỏi này (Phím S)">
+                  <i class="fa-regular fa-star"></i>
+                  <span class="hidden sm:inline">Đánh dấu</span>
+                  <span class="text-[10px] text-slate-400 font-mono hidden md:inline">[S]</span>
+                </button>
+                <button id="btn-toggle-sound" class="p-2 rounded-xl text-slate-500 hover:text-red-700 hover:bg-slate-100 text-xs font-bold transition border border-slate-200/80" title="Bật/Tắt âm thanh thông báo">
+                  <i id="sound-icon" class="fa-solid fa-volume-high text-emerald-600"></i>
+                </button>
+                <button id="btn-fullscreen" class="p-2 rounded-xl text-slate-500 hover:text-red-700 hover:bg-slate-100 text-xs font-bold transition border border-slate-200/80" title="Bật/Tắt toàn màn hình (Phòng thi PEST)">
+                  <i class="fa-solid fa-expand"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Progress Track -->
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                <span id="progress-text">Tiến độ hoàn thành: 0/40 câu</span>
+                <span id="progress-percent" class="font-bold text-red-700">0%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <div id="progress-fill" class="h-full bg-gradient-to-r from-red-600 to-amber-500 rounded-full transition-all duration-300" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question Content Card -->
+          <div class="bg-white p-5 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+            
+            <!-- Question text -->
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-xs font-bold text-red-700 uppercase tracking-wider">
+                <i class="fa-solid fa-circle-question"></i> Câu hỏi trắc nghiệm khách quan
+              </div>
+              <h3 id="question-text" class="text-base sm:text-lg font-bold text-slate-900 leading-relaxed">
+                Đang tải câu hỏi...
+              </h3>
+            </div>
+
+            <!-- Options (A, B, C, D) -->
+            <div id="options-container" class="space-y-3">
+              <!-- Dynamically rendered -->
+            </div>
+
+            <!-- Explanation & Law Citation Box (Visible immediately in practice mode, or after exam) -->
+            <div id="explanation-box" class="hidden p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-slate-800 space-y-2 animate-fadeIn">
+              <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-amber-800">
+                <i class="fa-solid fa-book-bookmark text-amber-600"></i> Lời giải thích chi tiết & Cơ sở pháp lý
+              </div>
+              <p id="explanation-text" class="text-sm leading-relaxed text-slate-700">
+                <!-- Explanation text -->
+              </p>
+            </div>
+
+            <!-- Action buttons: Prev / Next / Submit -->
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+              <button id="btn-prev-q" class="px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 font-bold text-xs sm:text-sm text-slate-700 transition flex items-center gap-2 disabled:opacity-40">
+                <i class="fa-solid fa-chevron-left"></i> Câu trước
+              </button>
+
+              <div class="flex items-center gap-2">
+                <button id="btn-submit-exam" class="hidden px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-black text-xs sm:text-sm text-white shadow-md transition flex items-center gap-2">
+                  <i class="fa-solid fa-paper-plane"></i> Nộp Bài Thi
+                </button>
+                <button id="btn-next-q" class="px-5 py-2.5 rounded-xl bg-red-700 hover:bg-red-800 font-bold text-xs sm:text-sm text-white shadow transition flex items-center gap-2">
+                  Câu tiếp <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right: Question Matrix & Stats (4 cols) -->
+        <div class="lg:col-span-4 space-y-5">
+          
+          <!-- Exam / Practice Summary Card -->
+          <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+            <h4 class="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center justify-between">
+              <span>Bảng danh sách câu hỏi</span>
+              <span id="answered-count-badge" class="text-[11px] font-bold text-slate-500">Đã làm: 0/40</span>
+            </h4>
+
+            <!-- Interactive Filter Tabs for Matrix -->
+            <div class="flex items-center gap-1 p-1 bg-slate-100 rounded-xl text-xs font-bold">
+              <button id="matrix-filter-all" class="matrix-filter-btn flex-1 py-1.5 rounded-lg bg-white text-slate-900 shadow-xs text-center transition">
+                Tất cả (<span id="count-mat-all">40</span>)
+              </button>
+              <button id="matrix-filter-unanswered" class="matrix-filter-btn flex-1 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 text-center transition">
+                Chưa làm (<span id="count-mat-unanswered">40</span>)
+              </button>
+              <button id="matrix-filter-flagged" class="matrix-filter-btn flex-1 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 text-center transition">
+                🚩 Cờ (<span id="count-mat-flagged">0</span>)
+              </button>
+            </div>
+
+            <!-- Legend -->
+            <div class="flex items-center gap-3 text-[11px] text-slate-500 font-medium flex-wrap">
+              <div class="flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded bg-red-700 inline-block"></span> Đã chọn
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded border border-slate-300 bg-white inline-block"></span> Chưa làm
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span>🚩</span> Cắm cờ
+              </div>
+            </div>
+
+            <!-- Question Matrix Grid -->
+            <div id="question-matrix-grid" class="grid grid-cols-5 sm:grid-cols-6 lg:grid-cols-5 gap-2 max-h-80 overflow-y-auto p-1">
+              <!-- Dynamically filled with buttons 1..N -->
+            </div>
+
+            <!-- Quick Jump / Action -->
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button id="btn-reset-quiz" class="text-xs text-slate-500 hover:text-red-700 font-bold flex items-center gap-1 transition">
+                <i class="fa-solid fa-rotate-left"></i> Làm lại từ đầu
+              </button>
+              <button id="btn-modal-submit-exam" class="hidden text-xs text-emerald-700 font-black hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-check-double"></i> Nộp bài thi ngay
+              </button>
+            </div>
+          </div>
+
+          <!-- Tips Card -->
+          <div class="bg-gradient-to-br from-red-50 to-amber-50 p-5 rounded-3xl border border-red-200/60 text-slate-800 space-y-2">
+            <div class="flex items-center gap-2 text-xs font-black uppercase text-red-800">
+              <i class="fa-solid fa-lightbulb text-amber-600"></i> Kinh nghiệm thi kết thúc học phần HUST
+            </div>
+            <p class="text-xs leading-relaxed text-slate-600">
+              Đề thi kết thúc học phần môn Pháp luật đại cương (EM1170 • SSH1131) tại ĐH Bách Khoa gồm 40 câu trắc nghiệm (thời gian 45 phút). Hãy chú ý kỹ:
+            </p>
+            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+              <li>Xác định chính xác cấu trúc Giả định - Quy định - Chế tài.</li>
+              <li>Bài tập chia thừa kế (Điều 644 di sản không phụ thuộc di chúc).</li>
+              <li>Thời hạn bảo hộ Sở hữu trí tuệ (Sáng chế 20 năm, Kiểu dáng 5x3=15 năm).</li>
+              <li>Độ tuổi chịu trách nhiệm hình sự (Điều 12 BLHS).</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: TRA CỨU & LUYỆN LẠI (SEARCH, BOOKMARKS, MISTAKES)          -->
+    <!-- ================================================================= -->
+    <div id="tab-search" class="tab-content hidden space-y-6">
+      
+      <!-- Search Bar -->
+      <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900">Tra Cứu Câu Hỏi & Kho Ôn Tập Luyện Lại</h3>
+            <p class="text-xs text-slate-500">Tìm kiếm từ khóa câu hỏi hoặc rà soát lại các câu đã đánh dấu lưu lại, câu từng làm sai</p>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative">
+          <input type="text" id="search-input" placeholder="Gõ từ khóa cần tra cứu (ví dụ: thừa kế, sáng chế, 14 tuổi, án treo, giả định, bãi nhiệm...)" 
+                 class="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-red-700 outline-none transition">
+          <i class="fa-solid fa-search absolute left-4 top-4 text-slate-400"></i>
+        </div>
+
+        <!-- Filter Sub-Tabs -->
+        <div class="flex items-center gap-2 flex-wrap pt-2">
+          <button id="search-tab-all" class="search-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-red-700 text-white shadow-xs">
+            Tất cả kết quả (<span id="count-all-matches">0</span>)
+          </button>
+          <button id="search-tab-bookmarks" class="search-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">
+            ⭐ Câu đã đánh dấu lưu lại (<span id="count-bookmarks">0</span>)
+          </button>
+          <button id="search-tab-mistakes" class="search-filter-btn px-4 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">
+            ❌ Câu từng làm sai (<span id="count-mistakes">0</span>)
+          </button>
+          <button id="btn-clear-mistakes" class="ml-auto text-xs text-slate-400 hover:text-red-700 font-semibold transition">
+            <i class="fa-solid fa-trash-can"></i> Xóa lịch sử làm sai
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Results List Container -->
+      <div id="search-results-container" class="space-y-4">
+        <!-- Rendered via app.js -->
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: SỔ TAY BẢNG TRA CỨU TRỌNG TÂM GIÁO TRÌNH (11 BẢNG)         -->
+    <!-- ================================================================= -->
+    <div id="tab-summary" class="tab-content hidden space-y-6">
+      
+      <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs flex items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200">
+            Sổ tay lý thuyết trọng tâm HUST
+          </span>
+          <h3 class="text-lg font-black text-slate-900 mt-1">13 Bảng Tra Cứu & Công Thức Cốt Lõi Học Phần Pháp Luật Đại Cương</h3>
+          <p class="text-xs text-slate-500">Tổng hợp toàn bộ kiến thức then chốt từ Slide bài giảng ĐH Bách Khoa Hà Nội & Giáo trình PGS.TS Vũ Quang</p>
+        </div>
+        <button onclick="window.print()" class="px-4 py-2 bg-red-700 hover:bg-red-800 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-1.5">
+          <i class="fa-solid fa-print"></i> In sổ tay
+        </button>
+      </div>
+
+      <!-- 11 SUMMARY TABLES & CARDS -->
+      <div class="space-y-6">
+
+        <!-- BẢNG 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-1 text-base"></i> Bảng 1: 04 Tiểu Hệ Thống Khoa Học Pháp Lý (Slide Chương 1 HUST)
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Tiểu hệ thống</th>
+                  <th class="p-3 font-bold">Các môn học / Ngành cụ thể</th>
+                  <th class="p-3 font-bold">Đặc trưng & Vai trò</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">1. Các KHPL cơ bản (Lý luận & Lịch sử)</td>
+                  <td class="p-3">Lý luận chung về NN và PL; Lịch sử NN và PL Việt Nam; Lịch sử NN và PL thế giới; Triết học pháp luật; Luật so sánh.</td>
+                  <td class="p-3">Cung cấp tri thức nền tảng, khái niệm, phạm trù, quy luật chung nhất về sự xuất hiện, tồn tại của NN & PL.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">2. Các KHPL chuyên ngành & liên ngành</td>
+                  <td class="p-3">Khoa học luật Hiến pháp; Luật Hành chính; Luật Hình sự; Luật Dân sự; Luật Môi trường; Luật Lao động...</td>
+                  <td class="p-3">Nghiên cứu các quy phạm và quan hệ xã hội trong từng lĩnh vực chuyên biệt của đời sống xã hội.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">3. Các KHPL quốc tế</td>
+                  <td class="p-3">Luật công pháp quốc tế; Luật tư pháp quốc tế; Luật môi trường quốc tế; Luật lao động quốc tế.</td>
+                  <td class="p-3">Nghiên cứu quan hệ pháp lý giữa các quốc gia và các quan hệ dân sự có yếu tố nước ngoài.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">4. Các KHPL ứng dụng – kỹ thuật</td>
+                  <td class="p-3">Khoa học điều tra hình sự; Tội phạm học; Y học tư pháp; Tâm lý học tư pháp; Giám định kỹ thuật hình sự.</td>
+                  <td class="p-3">Sử dụng kết luận của các khoa học tự nhiên - kỹ thuật (vật lý, hóa, y học, toán, sinh...) để giải quyết vấn đề pháp lý.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-2 text-base"></i> Bảng 2: 05 Đặc Trưng Cơ Bản Của Nhà Nước & 05 Vùng Biển VN (Slide Chương 2)
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <h5 class="font-bold text-xs text-red-800 uppercase">05 Đặc trưng cơ bản của Nhà nước:</h5>
+              <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside">
+                <li><strong>1. Thiết lập quyền lực công cộng đặc biệt:</strong> Có bộ máy chuyên nghiệp làm nhiệm vụ cưỡng chế và quản lý (quân đội, cảnh sát, nhà tù...).</li>
+                <li><strong>2. Phân chia dân cư theo lãnh thổ:</strong> Quản lý dân cư theo đơn vị hành chính lãnh thổ từ trung ương đến địa phương (không theo huyết thống).</li>
+                <li><strong>3. Có chủ quyền quốc gia:</strong> Quyền tối cao trong đối nội và độc lập tự quyết trong quan hệ đối ngoại.</li>
+                <li><strong>4. Độc quyền ban hành pháp luật:</strong> Tổ chức duy nhất có quyền ban hành các quy tắc xử sự bắt buộc chung và bảo đảm thực hiện.</li>
+                <li><strong>5. Quy định và thu các loại thuế:</strong> Thiết lập ngân sách nhà nước bằng thuế bắt buộc để nuôi bộ máy và thực hiện công việc chung.</li>
+              </ul>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <h5 class="font-bold text-xs text-red-800 uppercase">05 Vùng biển của Việt Nam (Luật Biển VN 2012 & UNCLOS 1982):</h5>
+              <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside">
+                <li><strong>1. Nội thủy:</strong> Vùng nước phía trong đường cơ sở. Chủ quyền hoàn toàn, tuyệt đối như trên đất liền.</li>
+                <li><strong>2. Lãnh hải:</strong> Rộng 12 hải lý tính từ đường cơ sở. Chủ quyền đầy đủ; tàu thuyền nước ngoài có quyền đi qua không gây hại.</li>
+                <li><strong>3. Vùng tiếp giáp lãnh hải:</strong> Rộng 12 hải lý (cách đường cơ sở 24 hải lý). Kiểm soát hải quan, thuế, y tế, môi trường.</li>
+                <li><strong>4. Vùng đặc quyền kinh tế (EEZ):</strong> Rộng tới 200 hải lý từ đường cơ sở. Quyền chủ quyền về kinh tế, khai thác tài nguyên sinh vật và khoáng sản.</li>
+                <li><strong>5. Thềm lục địa:</strong> Đáy biển và lòng đất dưới đáy biển rộng tối thiểu 200 hải lý và tối đa 350 hải lý. Quyền chủ quyền khai thác đáy biển.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BẢNG 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-3 text-base"></i> Bảng 3: Bộ Máy Nhà Nước CHXHCN Việt Nam (Hiến Pháp 2013 - Slide Chương 3)
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Cơ quan</th>
+                  <th class="p-3 font-bold">Vị trí pháp lý</th>
+                  <th class="p-3 font-bold">Cách thành lập & Nhiệm kỳ</th>
+                  <th class="p-3 font-bold">Văn bản QPPL ban hành</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Quốc hội</td>
+                  <td class="p-3">Cơ quan đại biểu cao nhất của Nhân dân, cơ quan quyền lực nhà nước cao nhất. Lập hiến, lập pháp, giám sát tối cao.</td>
+                  <td class="p-3">Do toàn dân bầu ra theo nguyên tắc phổ thông đầu phiếu. Nhiệm kỳ 05 năm.</td>
+                  <td class="p-3 font-semibold text-red-700">Hiến pháp, Luật, Bộ luật, Nghị quyết</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Ủy ban Thường vụ QH</td>
+                  <td class="p-3">Cơ quan thường trực của Quốc hội.</td>
+                  <td class="p-3">Do Quốc hội bầu trong số các đại biểu Quốc hội.</td>
+                  <td class="p-3 font-semibold text-red-700">Pháp lệnh, Nghị quyết</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Chủ tịch nước</td>
+                  <td class="p-3">Người đứng đầu Nhà nước, thay mặt nước CHXHCN Việt Nam về đối nội và đối ngoại. Thống lĩnh LLVT nhân dân.</td>
+                  <td class="p-3">Do Quốc hội bầu trong số đại biểu Quốc hội. Nhiệm kỳ theo nhiệm kỳ Quốc hội.</td>
+                  <td class="p-3 font-semibold text-red-700">Lệnh, Quyết định</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Chính phủ</td>
+                  <td class="p-3">Cơ quan hành chính nhà nước cao nhất, thực hiện quyền hành pháp, là cơ quan chấp hành của Quốc hội.</td>
+                  <td class="p-3">Gồm Thủ tướng, các Phó Thủ tướng, các Bộ trưởng và Thủ trưởng cơ quan ngang bộ.</td>
+                  <td class="p-3 font-semibold text-red-700">Nghị định, Nghị quyết (CP); Quyết định (Thủ tướng); Thông tư (Bộ trưởng)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Tòa án nhân dân</td>
+                  <td class="p-3">Cơ quan xét xử của nước CHXHCN Việt Nam, thực hiện quyền tư pháp.</td>
+                  <td class="p-3">Chánh án TANDTC do Quốc hội bầu, miễn nhiệm, bãi nhiệm theo đề nghị của Chủ tịch nước.</td>
+                  <td class="p-3 font-semibold text-red-700">Thông tư (Chánh án TANDTC); Nghị quyết (HĐ Thẩm phán TANDTC)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Viện kiểm sát ND</td>
+                  <td class="p-3">Thực hành quyền công tố và Kiểm sát hoạt động tư pháp.</td>
+                  <td class="p-3">Viện trưởng VKSNDTC do Quốc hội bầu, miễn nhiệm theo đề nghị của Chủ tịch nước.</td>
+                  <td class="p-3 font-semibold text-red-700">Thông tư (Viện trưởng VKSNDTC)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">HĐND & UBND địa phương</td>
+                  <td class="p-3">HĐND: Cơ quan quyền lực nhà nước ở địa phương.<br>UBND: Cơ quan chấp hành của HĐND, hành chính địa phương.</td>
+                  <td class="p-3">HĐND do dân bầu; UBND do HĐND cùng cấp bầu ra.</td>
+                  <td class="p-3 font-semibold text-red-700">Nghị quyết (HĐND); Quyết định (UBND)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 4 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-4 text-base"></i> Bảng 4: Cấu Trúc 3 Bộ Phận Quy Phạm Pháp Luật (QPPL - Slide Chương 4)
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 space-y-2">
+              <span class="font-black text-blue-900 uppercase">1. Bộ phận Giả định</span>
+              <p class="text-slate-700">Nêu chủ thể, điều kiện, hoàn cảnh thực tế mà chủ thể gặp phải sẽ chịu sự điều chỉnh của QPPL.</p>
+              <div class="bg-white p-2.5 rounded-xl border border-blue-100 text-blue-800 font-medium">
+                👉 <em>Trả lời:</em> <strong>Chủ thể là ai? Khi nào? Trong hoàn cảnh, điều kiện nào?</strong>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 space-y-2">
+              <span class="font-black text-amber-900 uppercase">2. Bộ phận Quy định</span>
+              <p class="text-slate-700">Nêu mệnh lệnh của Nhà nước ấn định cách xử sự mà chủ thể được phép, bắt buộc phải làm hoặc không được làm.</p>
+              <div class="bg-white p-2.5 rounded-xl border border-amber-100 text-amber-800 font-medium">
+                👉 <em>Trả lời:</em> <strong>Được làm gì? Phải làm gì? Không được làm gì? Làm như thế nào?</strong>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-red-50 border border-red-200 space-y-2">
+              <span class="font-black text-red-900 uppercase">3. Bộ phận Chế tài</span>
+              <p class="text-slate-700">Chỉ ra các biện pháp cưỡng chế, hậu quả pháp lý bất lợi mà nhà nước áp dụng đối với chủ thể vi phạm không thực hiện đúng quy định.</p>
+              <div class="bg-white p-2.5 rounded-xl border border-red-100 text-red-800 font-medium">
+                👉 <em>Trả lời:</em> <strong>Chủ thể vi phạm phải gánh chịu hậu quả gì, biện pháp xử lý nào?</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BẢNG 5 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-5 text-base"></i> Bảng 5: Phân Định Năng Lực Hành Vi Dân Sự Theo Độ Tuổi (BLDS 2015)
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Mức độ tuổi / Tình trạng</th>
+                  <th class="p-3 font-bold">Tình trạng năng lực hành vi dân sự</th>
+                  <th class="p-3 font-bold">Quy chế xác lập giao dịch dân sự</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Dưới 06 tuổi</td>
+                  <td class="p-3 text-red-700 font-semibold">Không có năng lực hành vi dân sự</td>
+                  <td class="p-3">Giao dịch dân sự hoàn toàn do người đại diện theo pháp luật xác lập, thực hiện.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Từ đủ 06 tuổi đến chưa đủ 15 tuổi</td>
+                  <td class="p-3 text-amber-700 font-semibold">Năng lực hành vi một phần (chưa đầy đủ)</td>
+                  <td class="p-3">Tự thực hiện giao dịch phục vụ nhu cầu sinh hoạt hàng ngày phù hợp lứa tuổi; giao dịch khác phải được người đại diện đồng ý.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Từ đủ 15 tuổi đến chưa đủ 18 tuổi</td>
+                  <td class="p-3 text-amber-700 font-semibold">Năng lực hành vi tương đối</td>
+                  <td class="p-3">Tự mình xác lập, thực hiện giao dịch dân sự, trừ giao dịch liên quan đến bất động sản, động sản phải đăng ký phải được đại diện đồng ý.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Từ đủ 18 tuổi trở lên</td>
+                  <td class="p-3 text-emerald-700 font-bold">Năng lực hành vi dân sự ĐẦY ĐỦ</td>
+                  <td class="p-3">Tự mình xác lập, thực hiện mọi giao dịch dân sự và tự chịu trách nhiệm về hành vi của mình (trừ khi bị Tòa án tuyên mất/hạn chế).</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Mất năng lực hành vi</td>
+                  <td class="p-3 text-red-700">Bệnh tâm thần hoặc bệnh khác làm mất khả năng nhận thức</td>
+                  <td class="p-3">Tòa án tuyên bố mất NLHV dựa trên kết luận giám định pháp y tâm thần; giao dịch do người giám hộ thực hiện.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Hạn chế năng lực hành vi</td>
+                  <td class="p-3 text-orange-700">Nghiện ma túy, chất kích thích phá tán tài sản gia đình</td>
+                  <td class="p-3">Tòa án ra quyết định tuyên bố; giao dịch liên quan tài sản phải có sự đồng ý của người đại diện.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 6 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-6 text-base"></i> Bảng 6: So Sánh 04 Hình Thức Thực Hiện Pháp Luật (Slide Chương 4)
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Hình thức</th>
+                  <th class="p-3 font-bold">Bản chất hành vi</th>
+                  <th class="p-3 font-bold">Loại quy phạm tương ứng</th>
+                  <th class="p-3 font-bold">Ví dụ thực tế</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">1. Tuân thủ pháp luật</td>
+                  <td class="p-3">Chủ thể kiềm chế không thực hiện những hoạt động mà pháp luật cấm (hành vi thụ động).</td>
+                  <td class="p-3">Quy phạm CẤM ĐOÁN</td>
+                  <td class="p-3">Không buôn bán ma túy; Không vượt đèn đỏ; Không nhận hối lộ.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">2. Thi hành pháp luật</td>
+                  <td class="p-3">Chủ thể thực hiện nghĩa vụ pháp lý của mình bằng hành động tích cực.</td>
+                  <td class="p-3">Quy phạm BẮT BUỘC</td>
+                  <td class="p-3">Đi xe máy đội mũ bảo hiểm; Kê khai nộp thuế đúng hạn; Đi nghĩa vụ quân sự.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">3. Sử dụng pháp luật</td>
+                  <td class="p-3">Chủ thể thực hiện quyền của mình (được làm gì mà luật cho phép để bảo vệ lợi ích).</td>
+                  <td class="p-3">Quy phạm CHO PHÉP (Quyền)</td>
+                  <td class="p-3">Nộp đơn đăng ký bảo hộ sáng chế; Khiếu nại quyết định; Đăng ký kết hôn.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">4. Áp dụng pháp luật</td>
+                  <td class="p-3">Hoạt động mang tính quyền lực của cơ quan nhà nước / người có thẩm quyền tổ chức thực hiện hoặc xử lý vi phạm.</td>
+                  <td class="p-3">Quy phạm Trao quyền / Thủ tục</td>
+                  <td class="p-3">Tòa án tuyên phạt bản án hình sự; CSGT ra quyết định xử phạt vi phạm hành chính.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 7 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-7 text-base"></i> Bảng 7: Phân Tích 04 Loại Lỗi Trong Mặt Chủ Quan Của Vi Phạm Pháp Luật
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Hình thức lỗi</th>
+                  <th class="p-3 font-bold">Yếu tố Lý trí (Nhận thức)</th>
+                  <th class="p-3 font-bold">Yếu tố Ý chí (Thái độ)</th>
+                  <th class="p-3 font-bold">Ví dụ thực tế HUST</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-red-700">Cố ý trực tiếp</td>
+                  <td class="p-3">Nhận thức rõ hành vi của mình là nguy hiểm cho xã hội, thấy trước hậu quả nguy hại tất yếu sẽ xảy ra.</td>
+                  <td class="p-3 font-bold text-emerald-800">Mong muốn cho hậu quả xảy ra</td>
+                  <td class="p-3">A dùng dao đâm vào ngực B với mục đích giết B để cướp tài sản.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-red-700">Cố ý gián tiếp</td>
+                  <td class="p-3">Nhận thức rõ hành vi nguy hiểm, thấy trước hậu quả nguy hại có thể xảy ra.</td>
+                  <td class="p-3 font-bold text-amber-800">Tuy không mong muốn nhưng có ý thức để mặc cho hậu quả xảy ra</td>
+                  <td class="p-3">Giăng dây điện trần 220V quanh vườn cây/ao cá chống trộm, người đi qua vướng dây bị điện giật chết.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-blue-700">Vô ý vì quá tự tin</td>
+                  <td class="p-3">Thấy trước hành vi của mình có thể gây hậu quả nguy hiểm cho xã hội.</td>
+                  <td class="p-3 font-bold text-slate-800">Không mong muốn, hy vọng/tin tưởng hậu quả sẽ không xảy ra hoặc ngăn chặn được</td>
+                  <td class="p-3">Tài xế tự tin tay lái vượt ngầm lũ chảy xiết làm xe bị cuốn trôi khiến hành khách tử vong.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-blue-700">Vô ý do cẩu thả</td>
+                  <td class="p-3">Không nhận thấy trước hậu quả nguy hại cho xã hội do hành vi của mình gây ra.</td>
+                  <td class="p-3 font-bold text-slate-800">Không mong muốn (mặc dù theo pháp luật buộc phải thấy trước và có thể thấy trước)</td>
+                  <td class="p-3">Y sĩ bật đèn pin điện thoại lấy thuốc trong đêm tối, khinh suất lấy nhầm thuốc tiêm làm bệnh nhân chết.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 8 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-8 text-base"></i> Bảng 8: Phân Biệt Dòng Họ Pháp Luật Common Law vs Civil Law (Slide Chương 5)
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Tiêu chí so sánh</th>
+                  <th class="p-3 font-bold text-blue-800">Common Law (Thông luật - Anh, Mỹ, Úc, Canada)</th>
+                  <th class="p-3 font-bold text-red-800">Civil Law (Dân luật lục địa - Pháp, Đức, Ý, VN)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Nguồn luật chủ yếu</td>
+                  <td class="p-3 font-semibold text-blue-700">Án lệ (Case law / Tiền lệ pháp do Tòa án lập ra)</td>
+                  <td class="p-3 font-semibold text-red-700">Luật thành văn (Văn bản QPPL được pháp điển hóa thành Bộ luật)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Mô hình tố tụng</td>
+                  <td class="p-3 font-semibold text-blue-700">Tố tụng Tranh tụng (Adversarial system)</td>
+                  <td class="p-3 font-semibold text-red-700">Tố tụng Thẩm vấn / Tố tụng viết (Inquisitorial system)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Vai trò của Thẩm phán</td>
+                  <td class="p-3">Được coi trọng đặc biệt, thẩm phán sáng tạo ra pháp luật khi xét xử các vụ án mới.</td>
+                  <td class="p-3">Chỉ là cơ quan áp dụng luật, tiến hành xét xử theo luật thành văn có sẵn.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Phân chia ngành luật</td>
+                  <td class="p-3">Khó phân chia rạch ròi, gồm Tiền lệ pháp luật và Luật công bình (Equity).</td>
+                  <td class="p-3">Phân chia rõ ràng thành Luật công (Public law) và Luật tư (Private law).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 9 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-9 text-base"></i> Bảng 9: Phân Loại Tội Phạm & Độ Tuổi Chịu TNHS (Điều 9 & 12 BLHS)
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <h5 class="font-bold text-red-800 uppercase">4 Mức độ phân loại tội phạm (Điều 9 BLHS):</h5>
+              <ul class="text-slate-700 space-y-1.5 list-disc list-inside">
+                <li><strong>1. Tội phạm ít nghiêm trọng:</strong> Mức cao nhất của khung hình phạt là đến 03 năm tù.</li>
+                <li><strong>2. Tội phạm nghiêm trọng:</strong> Mức cao nhất của khung hình phạt từ trên 03 năm đến 07 năm tù.</li>
+                <li><strong>3. Tội phạm rất nghiêm trọng:</strong> Mức cao nhất của khung hình phạt từ trên 07 năm đến 15 năm tù.</li>
+                <li><strong>4. Tội phạm đặc biệt nghiêm trọng:</strong> Mức cao nhất của khung hình phạt từ trên 15 năm đến 20 năm tù, tù chung thân hoặc tử hình.</li>
+              </ul>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <h5 class="font-bold text-red-800 uppercase">Độ tuổi chịu trách nhiệm hình sự (Điều 12 BLHS):</h5>
+              <ul class="text-slate-700 space-y-1.5 list-disc list-inside">
+                <li><strong>Dưới 14 tuổi:</strong> Hoàn toàn không phải chịu trách nhiệm hình sự.</li>
+                <li><strong>Từ đủ 14 đến dưới 16 tuổi:</strong> Chỉ phải chịu trách nhiệm hình sự về tội phạm RẤT NGHIÊM TRỌNG do CỐ Ý hoặc tội phạm ĐẶC BIỆT NGHIÊM TRỌNG (quy định tại Khoản 2 Điều 12).</li>
+                <li><strong>Từ đủ 16 tuổi trở lên:</strong> Phải chịu trách nhiệm hình sự về MỌI TỘI PHẠM.</li>
+                <li><strong>Người phạm tội trong tình trạng say rượu/chất kích thích (Điều 13):</strong> Vẫn phải chịu TNHS bình thường.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BẢNG 10 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-1 text-base"></i><i class="fa-solid fa-0 text-base"></i> Bảng 10: Sơ Đồ Phân Chia Di Sản Thừa Kế (Điều 644, 651, 652 BLDS 2015)
+          </div>
+          <div class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="p-3.5 bg-red-50 rounded-xl border border-red-200 space-y-1">
+                <span class="font-bold text-red-900 uppercase">Hàng thừa kế thứ nhất:</span>
+                <p class="text-slate-700">Vợ, chồng, cha đẻ, mẹ đẻ, cha nuôi, mẹ nuôi, con đẻ, con nuôi của người chết.</p>
+              </div>
+              <div class="p-3.5 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
+                <span class="font-bold text-amber-900 uppercase">Hàng thừa kế thứ hai:</span>
+                <p class="text-slate-700">Ông bà nội, ngoại; anh, chị, em ruột; cháu ruột (mà người chết là ông bà nội, ngoại).</p>
+              </div>
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <span class="font-bold text-slate-900 uppercase">Hàng thừa kế thứ ba:</span>
+                <p class="text-slate-700">Cụ nội, ngoại; bác, chú, cậu, cô, dì ruột; chắt ruột (mà người chết là cụ nội, ngoại).</p>
+              </div>
+            </div>
+
+            <div class="p-4 bg-rose-50 rounded-2xl border border-rose-200 space-y-2">
+              <span class="font-bold text-rose-950 uppercase">Nguyên tắc thừa kế đặc thù trong đề thi Bách Khoa:</span>
+              <ul class="text-slate-700 space-y-1.5 list-disc list-inside">
+                <li><strong>Người thừa kế không phụ thuộc nội dung di chúc (Điều 644):</strong> Con chưa thành niên, cha, mẹ, vợ, chồng; và con đã thành niên không có khả năng lao động -> Được hưởng <strong>2/3 một suất thừa kế theo pháp luật</strong> (tính trên giả định chia đều theo luật).</li>
+                <li><strong>Thừa kế thế vị (Điều 652):</strong> Con của người để lại di sản chết trước hoặc cùng thời điểm với người để lại di sản thì CHÁU được hưởng phần mà cha/mẹ cháu được hưởng nếu còn sống (CHỈ áp dụng cho Thừa kế theo pháp luật).</li>
+                <li><strong>Thời hiệu khởi kiện yêu cầu chia di sản thừa kế (Điều 623):</strong> 30 năm đối với bất động sản; 10 năm đối với động sản kể từ thời điểm mở thừa kế.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BẢNG 11 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-1 text-base"></i><i class="fa-solid fa-1 text-base"></i> Bảng 11: Thời Hạn & Điều Kiện Bảo Hộ Quyền Sở Hữu Trí Tuệ (Slide Chương 7 HUST)
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Đối tượng bảo hộ</th>
+                  <th class="p-3 font-bold">Loại văn bằng bảo hộ</th>
+                  <th class="p-3 font-bold">Thời hạn bảo hộ</th>
+                  <th class="p-3 font-bold">Điều kiện bảo hộ</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Sáng chế</td>
+                  <td class="p-3">Bằng độc quyền sáng chế</td>
+                  <td class="p-3 font-semibold text-red-700">20 năm tính từ ngày nộp đơn hợp lệ</td>
+                  <td class="p-3">Có tính mới; Có trình độ sáng tạo; Có khả năng áp dụng công nghiệp.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Giải pháp hữu ích</td>
+                  <td class="p-3">Bằng độc quyền giải pháp hữu ích</td>
+                  <td class="p-3 font-semibold text-red-700">10 năm tính từ ngày nộp đơn hợp lệ</td>
+                  <td class="p-3">Có tính mới; Có khả năng áp dụng công nghiệp (không phải hiểu biết thông thường).</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Kiểu dáng công nghiệp</td>
+                  <td class="p-3">Bằng độc quyền kiểu dáng công nghiệp</td>
+                  <td class="p-3 font-semibold text-red-700">05 năm từ ngày nộp đơn; gia hạn 2 lần x 5 năm = Tối đa 15 năm</td>
+                  <td class="p-3">Có tính mới; Có tính sáng tạo; Khả năng áp dụng công nghiệp.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Nhãn hiệu hàng hóa</td>
+                  <td class="p-3">Giấy chứng nhận đăng ký nhãn hiệu</td>
+                  <td class="p-3 font-semibold text-red-700">10 năm kể từ ngày nộp đơn; gia hạn nhiều lần (không hạn chế)</td>
+                  <td class="p-3">Dấu hiệu nhìn thấy được, có khả năng phân biệt hàng hóa, dịch vụ.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Thiết kế bố trí mạch bán dẫn</td>
+                  <td class="p-3">Giấy chứng nhận đăng ký thiết kế bố trí</td>
+                  <td class="p-3 font-semibold text-red-700">Ngày sớm nhất: 10 năm từ nộp đơn, 10 năm từ khai thác TM, hoặc 15 năm từ khi tạo ra</td>
+                  <td class="p-3">Có tính nguyên gốc và tính mới thương mại.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Quyền tác giả (Phần mềm, văn học)</td>
+                  <td class="p-3">Bảo hộ tự động khi định hình (Giấy chứng nhận bản quyền)</td>
+                  <td class="p-3 font-semibold text-red-700">Suốt cuộc đời tác giả + 50 năm tiếp theo sau khi chết</td>
+                  <td class="p-3">Trực tiếp sáng tạo, không sao chép, định hình dưới dạng vật chất.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Tên thương mại & Chỉ dẫn địa lý</td>
+                  <td class="p-3">Bảo hộ vô thời hạn (Chỉ dẫn địa lý do Nhà nước sở hữu)</td>
+                  <td class="p-3 font-semibold text-emerald-700">Vô thời hạn</td>
+                  <td class="p-3">Có khả năng phân biệt; gắn với danh tiếng vùng lãnh thổ đặc thù.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- BẢNG 12: ĐẶC BIỆT - TỔNG HỢP TOÀN BỘ CÁC VÍ DỤ, ÁN LỆ & TÌNH HUỐNG TRONG SLIDE BÀI GIẢNG HUST -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-12 text-base"></i> Bảng 12: Hệ Thống Các Tình Huống, Án Lệ Điển Hình Trích Từ Slide Bài Giảng Giảng Viên HUST
+          </div>
+          <p class="text-xs text-slate-500">
+            Tổng hợp đầy đủ các ví dụ và tình huống thực tế xuất hiện trực tiếp trong Slide bài giảng Chương 1, 2, 3, 4 môn Pháp luật đại cương ĐH Bách Khoa Hà Nội:
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            
+            <!-- Án lệ 4 Loại lỗi -->
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <h5 class="font-bold text-red-800 uppercase flex items-center gap-1.5">
+                <i class="fa-solid fa-scale-unbalanced text-amber-600"></i> 04 Ví dụ thực tế về 04 loại lỗi (Slide 90 - 93 Chương 4):
+              </h5>
+              <div class="space-y-2 text-slate-700">
+                <div class="p-2.5 bg-white rounded-xl border border-slate-200">
+                  <strong class="text-red-700 block">1. Cố ý trực tiếp:</strong>
+                  Cướp giật túi xách, đánh người gây thương tích. Nhận thức hành vi nguy hiểm + Mong muốn hậu quả xảy ra.
+                </div>
+                <div class="p-2.5 bg-white rounded-xl border border-slate-200">
+                  <strong class="text-red-700 block">2. Cố ý gián tiếp (Vụ vườn cây cảnh):</strong>
+                  Ông A kinh doanh vườn cây tiền tỷ, giăng dây điện trần bao quanh hàng rào từ tối đến sáng. Anh B say rượu ngã vào hàng rào bị điện giật chết. Ông A phạm lỗi cố ý gián tiếp (thấy trước nguy hiểm nhưng không muốn và có ý thức để mặc hậu quả).
+                </div>
+                <div class="p-2.5 bg-white rounded-xl border border-slate-200">
+                  <strong class="text-red-700 block">3. Vô ý vì quá tự tin (Vụ lũ Hà Tĩnh 2010):</strong>
+                  Vụ xe khách bị lũ cuốn tại Hà Tĩnh năm 2010 (20 người chết). Lái xe cố điều khiển xe qua dòng lũ xiết vì tin tưởng xe to khỏe sẽ băng qua được. Lỗi vô ý vì quá tự tin (thấy trước nguy hiểm nhưng tin tưởng sẽ không xảy ra).
+                </div>
+                <div class="p-2.5 bg-white rounded-xl border border-slate-200">
+                  <strong class="text-red-700 block">4. Vô ý do cẩu thả (Người đi bộ qua đường):</strong>
+                  Người đi bộ qua đường vô thức (không quan sát) làm 2 xe chạy ngược chiều bất ngờ đánh lái tránh nhau đâm vào nhau làm chết người. Lỗi vô ý do cẩu thả (không thấy trước hậu quả mặc dù buộc phải và có thể thấy trước).
+                </div>
+              </div>
+            </div>
+
+            <!-- Tình huống thi kết thúc học phần & 8 ví dụ QPPL -->
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <h5 class="font-bold text-red-800 uppercase flex items-center gap-1.5">
+                <i class="fa-solid fa-gavel text-amber-600"></i> Tình huống thi cuối slide & 8 Ví dụ cơ cấu QPPL:
+              </h5>
+              <div class="space-y-2 text-slate-700">
+                <div class="p-2.5 bg-white rounded-xl border border-slate-200">
+                  <strong class="text-red-700 block">Tình huống thi cuối kỳ (Slide 105 Chương 4):</strong>
+                  A và B học đại học cùng nhau. Khi đi qua cầu sông Hồng, biết B không biết bơi, A đã đẩy B xuống sông. A ngồi trên bờ nhìn B chìm dần kêu cứu, khi B chìm hẳn thì A bỏ về.
+                  <span class="text-slate-500 block mt-1">→ Hành vi của A cấu thành Tội giết người với lỗi cố ý (cố ý trực tiếp hoặc cố ý gián tiếp đối với việc bỏ mặc cho chết đuối).</span>
+                </div>
+                <div class="p-2.5 bg-white rounded-xl border border-slate-200">
+                  <strong class="text-red-700 block">8 Ví dụ phân tích Giả định - Quy định - Chế tài:</strong>
+                  <ul class="list-disc list-inside space-y-1 text-slate-600 mt-1">
+                    <li><em>K1 Đ87 Luật Giáo dục 2005:</em> Hưởng học bổng (Giả định) - Phải làm việc theo điều động (Quy định) - Bồi hoàn học bổng (Chế tài).</li>
+                    <li><em>Đ125 BLHS:</em> Giết người bị kích động mạnh (Giả định) - Phạt tù 6 tháng đến 3 năm (Chế tài) [Khuyết Quy định].</li>
+                    <li><em>Đ19 NĐ 70/2001:</em> Được cấp dưỡng 1 lần lâm cảnh khó khăn (Giả định) - Phải cấp dưỡng bổ sung (Quy định) [Không có chế tài].</li>
+                    <li><em>Đ6 NĐ 46/2016:</em> Tịch thu xe buông 2 tay, lái bằng chân, nằm trên yên, lạng lách đánh võng, chạy 1 bánh xe máy.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Các số liệu và sự kiện quan trọng trong Slide -->
+          <div class="p-4 bg-red-50/60 rounded-2xl border border-red-200 text-xs text-slate-800 space-y-1.5">
+            <div class="font-bold text-red-900 flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-red-700"></i> Các mốc số liệu & Sự kiện lịch sử cần ghi nhớ theo Slide HUST:
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 pt-1 font-medium">
+              <div class="bg-white p-2 rounded-xl border border-red-100">
+                <strong>Quốc hội khóa XIV:</strong> 494 đại biểu; họp 2 kỳ/năm thường kỳ; bầu xong khóa mới 60 ngày trước khi hết nhiệm kỳ.
+              </div>
+              <div class="bg-white p-2 rounded-xl border border-red-100">
+                <strong>VKSND cấp cao:</strong> Có 03 viện đặt tại Hà Nội, Đà Nẵng, TP.HCM; toàn quốc có 691 VKS cấp huyện.
+              </div>
+              <div class="bg-white p-2 rounded-xl border border-red-100">
+                <strong>3 Nhà nước đầu tiên:</strong> Aten (mâu thuẫn giai cấp đối kháng), La Mã (bình dân đấu tranh quý tộc), Giéc Manh (xâm chiếm).
+              </div>
+              <div class="bg-white p-2 rounded-xl border border-red-100">
+                <strong>Cấu trúc Liên bang:</strong> Có khoảng 28 nước (Mỹ, Đức, Áo, Ấn Độ, Brazil, Argentina, Mexico, Thụy Sĩ... - công dân 2 quốc tịch).
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BẢNG 13: CÁC HỆ THỐNG PHÁP LUẬT THẾ GIỚI & ĐẶC THÙ SHTT KHOA HỌC KỸ THUẬT (SLIDE 5, 6, 7) -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4 card-print">
+          <div class="flex items-center gap-2.5 text-red-700 font-black text-sm uppercase tracking-wide">
+            <i class="fa-solid fa-13 text-base"></i> Bảng 13: So Sánh 03 Hệ Thống Pháp Luật Thế Giới & Mốc Bảo Hộ SHTT Dành Cho Kỹ Sư HUST
+          </div>
+          <p class="text-xs text-slate-500">
+            Tổng hợp trọng tâm so sánh Common Law - Civil Law - Islamic Law và các kiến thức Sở hữu trí tuệ, Thừa kế, Hình sự theo Slide Chương 5, 6, 7:
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-red-50 border-b border-red-200 text-slate-800">
+                  <th class="p-3 font-bold">Tiêu chí so sánh</th>
+                  <th class="p-3 font-bold text-red-900">Common Law (Anh - Mỹ / Thông luật)</th>
+                  <th class="p-3 font-bold text-blue-900">Civil Law (Châu Âu lục địa / Dân luật)</th>
+                  <th class="p-3 font-bold text-amber-900">Islamic Law (Hệ thống luật Hồi giáo)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Quốc gia điển hình</td>
+                  <td class="p-3">Anh, Mỹ, Canada, Úc...</td>
+                  <td class="p-3">Pháp, Đức, Italia, Việt Nam (chịu ảnh hưởng)</td>
+                  <td class="p-3">Các quốc gia lấy đạo Hồi làm quốc đạo (Ả Rập Xê Út, Iran...)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Nguồn luật chủ yếu</td>
+                  <td class="p-3 font-semibold text-red-700">Án lệ (Precedent) & Luật công bình (Equity)</td>
+                  <td class="p-3 font-semibold text-blue-700">Luật thành văn (Văn bản QPPL pháp điển hóa cao)</td>
+                  <td class="p-3 font-semibold text-amber-700">Kinh thánh (Kinh Qur'an / Sunnah làm luật)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Mô hình tố tụng</td>
+                  <td class="p-3">Tố tụng tranh tụng (Adversarial); Thẩm phán và luật sư danh tiếng được coi trọng</td>
+                  <td class="p-3">Tố tụng thẩm vấn / tố tụng viết (Inquisitorial); Thẩm phán đào tạo riêng</td>
+                  <td class="p-3">Tố tụng tôn giáo theo kinh điển</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-slate-900">Vai trò Thẩm phán</td>
+                  <td class="p-3 font-semibold text-red-700">Tòa án là cơ quan sáng tạo luật ("làm luật lần thứ 2")</td>
+                  <td class="p-3 font-semibold text-blue-700">Chỉ Nghị viện mới có quyền lập pháp; Thẩm phán chỉ áp dụng luật</td>
+                  <td class="p-3 font-semibold text-amber-700">Giới luật gia "đóng cửa tư duy" (thế kỷ 10), phán xử theo luật 1000 năm trước</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Lưới tóm tắt các mốc thời hạn SHTT & Dân sự -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-2">
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+              <strong class="text-red-800 block uppercase">SHTT Đặc thù Kỹ sư HUST:</strong>
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li><em>Sáng chế:</em> 20 năm từ ngày nộp đơn.</li>
+                <li><em>Giải pháp hữu ích:</em> 10 năm từ ngày nộp đơn.</li>
+                <li><em>Kiểu dáng CN:</em> 5 năm (gia hạn 2 lần = tối đa 15 năm).</li>
+                <li><em>Thiết kế bố trí IC:</em> Chấm dứt sớm nhất trong: 10 năm nộp đơn / 10 năm khai thác TM / 15 năm tạo ra.</li>
+                <li><em>Giống cây trồng:</em> 25 năm thân gỗ, nho / 20 năm cây khác.</li>
+              </ul>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+              <strong class="text-red-800 block uppercase">Bản quyền phần mềm & Nhãn hiệu:</strong>
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li><em>Phần mềm máy tính:</em> Quyền nhân thân vô thời hạn; Quyền tài sản suốt đời tác giả + 50 năm sau khi chết.</li>
+                <li><em>Điện ảnh, nhiếp ảnh, mỹ thuật UD:</em> 75 năm từ khi công bố (100 năm nếu chưa công bố trong 25 năm).</li>
+                <li><em>Nhãn hiệu:</em> 10 năm (gia hạn không hạn chế).</li>
+                <li><em>Tên thương mại & Chỉ dẫn địa lý:</em> Vô thời hạn.</li>
+              </ul>
+            </div>
+
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+              <strong class="text-red-800 block uppercase">Quy định Hình sự & Thừa kế then chốt:</strong>
+              <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li><em>Di chúc miệng:</em> 2 người làm chứng, trong 5 ngày công chứng/chứng thực, sau 3 tháng hết hiệu lực nếu còn sống.</li>
+                <li><em>Say rượu khi phạm tội:</em> Vẫn phải chịu TNHS bình thường.</li>
+                <li><em>Tự ý nửa chừng chấm dứt:</em> Miễn TNHS về tội định phạm.</li>
+                <li><em>Người thân không tố giác:</em> Chỉ chịu TNHS với tội ANQG hoặc tội đặc biệt nghiêm trọng.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: FLASHCARD 3D LẬT THẺ NHỚ NHANH                              -->
+    <!-- ================================================================= -->
+    <div id="tab-flashcard" class="tab-content hidden space-y-6">
+      
+      <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs flex items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200">
+            Học nhanh định nghĩa
+          </span>
+          <h3 class="text-base sm:text-lg font-black text-slate-900 mt-1">Flashcard 3D Lật Thẻ Nhớ Nhanh Các Định Nghĩa Cốt Lõi</h3>
+          <p class="text-xs text-slate-500">Bấm vào thẻ hoặc dùng phím Space để lật; dùng mũi tên Trái / Phải để chuyển thẻ</p>
+        </div>
+        <div class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-xl">
+          Thẻ <span id="fc-current-idx">1</span>/<span id="fc-total-count">16</span>
+        </div>
+      </div>
+
+      <!-- Flashcard Interactive View -->
+      <div class="max-w-xl mx-auto py-4">
+        
+        <div id="flashcard-box" class="flip-card w-full h-80 sm:h-96 cursor-pointer select-none">
+          <div class="flip-card-inner h-full shadow-lg rounded-3xl">
+            
+            <!-- Front -->
+            <div class="flip-card-front bg-gradient-to-br from-red-900 to-red-800 text-white p-8 flex flex-col justify-between border-2 border-red-700">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-black uppercase tracking-wider bg-white/20 text-white px-2.5 py-1 rounded-lg">
+                  Thuật ngữ cốt lõi HUST
+                </span>
+                <i class="fa-solid fa-arrows-rotate text-white/50 text-base"></i>
+              </div>
+
+              <div class="text-center my-auto px-4">
+                <h4 id="fc-front-term" class="text-xl sm:text-2xl font-black leading-snug">
+                  Đang tải thuật ngữ...
+                </h4>
+                <p class="text-xs text-red-200 mt-3 font-medium">
+                  (Nhấp chuột hoặc nhấn Space để xem định nghĩa)
+                </p>
+              </div>
+
+              <div class="text-[11px] text-red-200 text-center font-medium">
+                Môn học: Pháp luật đại cương (ĐH Bách Khoa Hà Nội)
+              </div>
+            </div>
+
+            <!-- Back -->
+            <div class="flip-card-back bg-white text-slate-800 p-8 flex flex-col justify-between border-2 border-slate-200">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-black uppercase tracking-wider bg-red-100 text-red-800 px-2.5 py-1 rounded-lg">
+                  Nội dung giải thích
+                </span>
+                <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
+              </div>
+
+              <div class="my-auto px-2 overflow-y-auto max-h-56">
+                <p id="fc-back-desc" class="text-sm sm:text-base leading-relaxed text-slate-700 font-medium">
+                  Đang tải nội dung...
+                </p>
+              </div>
+
+              <div class="text-[11px] text-slate-400 text-center font-medium">
+                Căn cứ: Giáo trình PGS.TS Vũ Quang & BLDS, BLHS hiện hành
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center justify-center gap-4 mt-6">
+          <button id="btn-fc-prev" class="px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm shadow-xs transition flex items-center gap-2">
+            <i class="fa-solid fa-chevron-left"></i> Thẻ trước
+          </button>
+          <button id="btn-fc-flip" class="px-6 py-2.5 rounded-xl bg-red-700 hover:bg-red-800 text-white font-black text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+            <i class="fa-solid fa-arrows-rotate"></i> Lật thẻ
+          </button>
+          <button id="btn-fc-next" class="px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm shadow-xs transition flex items-center gap-2">
+            Thẻ tiếp <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  
+    <!-- ================================================================= -->
+    <!-- TAB 5: 10 BẪY PHÒNG THI & CÂU HỎI HAY LỪA NHẤT TẠI HUST (MẸO A+) -->
+    <!-- ================================================================= -->
+    <div id="tab-traps" class="tab-content hidden space-y-6">
+      
+      <div class="bg-gradient-to-r from-red-950 via-slate-900 to-amber-950 text-white p-6 rounded-3xl border border-amber-500/30 shadow-lg space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center text-2xl font-black shadow-md">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-lg bg-amber-400 text-slate-950 font-black text-[10px] uppercase tracking-wider">
+                Cẩm nang đạt điểm A/A+ HUST
+              </span>
+              <span class="text-xs text-amber-300 font-semibold">Kinh nghiệm từ các kỳ thi K62 - K68</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-black text-white mt-1">10 Cạm Bẫy Đề Thi Pháp Luật Đại Cương Sinh Viên Bách Khoa Hay Sai Nhất</h3>
+          </div>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-4xl">
+          Đề thi kết thúc học phần của trường ta thường xuyên cài cắm các chi tiết đánh lừa cực kỳ tinh vi. Hãy đọc kỹ 10 dạng bẫy kinh điển dưới đây để không bị mất điểm oan và chắc chắn giành điểm A+!
+        </p>
+      </div>
+
+      <!-- GRID 10 TRAP CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <!-- BẪY 1 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">1</span>
+            Bẫy 1: Cấu trúc Quy phạm Hình sự bị khuyết Quy định
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Trích Điều 125, 127 hoặc 151 BLHS (Ví dụ: <em>"Người nào giết người trong trạng thái tinh thần kích động mạnh... thì bị phạt tù..."</em>) và hỏi cấu trúc gồm những bộ phận nào.
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Hầu hết các quy phạm trong phần các tội phạm BLHS <strong>CHỈ CÓ GIẢ ĐỊNH VÀ CHẾ TÀI</strong> (Khuyết bộ phận Quy định). Mệnh lệnh cấm "không được làm" đã ẩn ngầm trong phần Chế tài. Không được chọn phương án "Đủ cả 3 bộ phận"!
+          </p>
+        </div>
+
+        <!-- BẪY 2 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">2</span>
+            Bẫy 2: Tuổi chịu TNHS 14 đến dưới 16 tuổi (Điều 12 BLHS)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Cho tình huống thiếu niên 15 tuổi lái xe đâm người gây chết người với lỗi <em>Vô ý</em> (khung hình phạt rất nghiêm trọng).
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Từ đủ 14 đến dưới 16 tuổi <strong>CHỈ chịu về tội RẤT NGHIÊM TRỌNG DO CỐ Ý</strong> hoặc <strong>ĐẶC BIỆT NGHIÊM TRỌNG</strong>. Nếu phạm tội rất nghiêm trọng nhưng do <em>VÔ Ý</em> thì hoàn toàn <strong>KHÔNG PHẢI CHỊU TNHS</strong>!
+          </p>
+        </div>
+
+        <!-- BẪY 3 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">3</span>
+            Bẫy 3: Say rượu khi phạm tội (Điều 13 BLHS & Slide 26)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Hỏi xem người thực hiện hành vi nguy hiểm trong tình trạng say rượu mất kiểm soát có được miễn TNHS hay giảm nhẹ không.
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Phạm tội trong tình trạng say do dùng rượu hoặc chất kích thích mạnh khác <strong>VẪN PHẢI CHỊU TRÁCH NHIỆM HÌNH SỰ</strong>. Không bao giờ được coi là mất năng lực TNHS hay tình tiết giảm nhẹ.
+          </p>
+        </div>
+
+        <!-- BẪY 4 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">4</span>
+            Bẫy 4: Thừa kế không phụ thuộc nội dung di chúc (Điều 644 BLDS)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Ông A di chúc truất quyền thừa kế của vợ và con nhỏ 10 tuổi. Cho bài tập tính suất thừa kế theo luật để nhân với 2/3.
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Vợ, cha, mẹ, con chưa thành niên, con thành niên mất khả năng lao động luôn được hưởng <strong>2/3 một suất thừa kế theo luật</strong>. Khi tính "1 suất theo luật", <strong>KHÔNG ĐƯỢC BỎ</strong> người bị di chúc truất quyền (họ vẫn được tính là 1 đầu người để chia đều di sản).
+          </p>
+        </div>
+
+        <!-- BẪY 5 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">5</span>
+            Bẫy 5: Mốc tính thời hạn bảo hộ Sáng chế (Chương 7)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Đưa ra 4 phương án: (A) 20 năm từ ngày cấp bằng; (B) 20 năm từ ngày nộp đơn; (C) 15 năm; (D) 10 năm.
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Bằng độc quyền sáng chế có hiệu lực <strong>20 NĂM TÍNH TỪ NGÀY NỘP ĐƠN</strong> (không phải ngày cấp bằng!). Chủ bằng phải nộp lệ phí duy trì hiệu lực hàng năm.
+          </p>
+        </div>
+
+        <!-- BẪY 6 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">6</span>
+            Bẫy 6: Thẩm quyền ban hành Văn bản QPPL (Luật Ban hành VBQPPL)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Hỏi văn bản QPPL của Thủ tướng Chính phủ là gì? (Hay lừa chọn "Nghị định").
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> 
+            • <em>Chính phủ</em> ban hành Nghị định, Nghị quyết.<br>
+            • <em>Thủ tướng Chính phủ</em> ban hành <strong>Quyết định</strong> (không ban hành Nghị định).<br>
+            • <em>Bộ trưởng</em> ban hành <strong>Thông tư</strong> (không ban hành Quyết định QPPL).<br>
+            • <em>UBTVQH</em> ban hành <strong>Pháp lệnh, Nghị quyết</strong>.
+          </p>
+        </div>
+
+        <!-- BẪY 7 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">7</span>
+            Bẫy 7: Thừa kế thế vị (Điều 652 BLDS 2015)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Người để lại di sản có di chúc cho con trai là C. Nhưng C chết trước cha. Hỏi con của C (cháu) có được thế vị theo di chúc không?
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Thừa kế thế vị <strong>CHỈ ÁP DỤNG KHI THỪA KẾ THEO PHÁP LUẬT</strong>. Người được chỉ định trong di chúc mà chết trước/cùng thời điểm thì phần di chúc đó vô hiệu, chuyển sang chia theo pháp luật; khi đó cháu mới được hưởng thế vị phần chia theo luật.
+          </p>
+        </div>
+
+        <!-- BẪY 8 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">8</span>
+            Bẫy 8: Người thân không tố giác tội phạm (Điều 19 BLHS & Slide 32)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Mẹ biết con trai trộm cắp tài sản (tội nghiêm trọng) nhưng không đi báo công an. Hỏi người mẹ có phạm tội không tố giác tội phạm không?
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> Người thân (ông bà, cha mẹ, con, cháu, anh chị em ruột, vợ chồng) <strong>KHÔNG PHẢI CHỊU TNHS</strong> nếu tội đó là ít nghiêm trọng, nghiêm trọng hoặc rất nghiêm trọng. Họ <strong>CHỈ PHẢI CHỊU</strong> khi không tố giác tội <em>Xâm phạm an ninh quốc gia</em> hoặc <em>Tội đặc biệt nghiêm trọng</em> (khung phạt >15 năm tù, chung thân, tử hình).
+          </p>
+        </div>
+
+        <!-- BẪY 9 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">9</span>
+            Bẫy 9: Hiệu lực của Di chúc bằng lời nói (Di chúc miệng)
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Ông A lâm bệnh nặng lập di chúc miệng trước 2 người làm chứng hợp lệ. 4 tháng sau ông A mới qua đời và trong 4 tháng đó ông hoàn toàn tỉnh táo. Hỏi di chúc miệng có hiệu lực không?
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong> <strong>KHÔNG CÒN HIỆU LỰC!</strong> Theo Điều 629 BLDS & Slide 48: Sau <strong>03 tháng</strong> kể từ ngày lập di chúc miệng mà người lập còn sống, minh mẫn, sáng suốt thì di chúc miệng đó <strong>MẶC NHIÊN BỊ HỦY BỎ</strong>.
+          </p>
+        </div>
+
+        <!-- BẪY 10 -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-red-200/80 shadow-xs space-y-3 card-print">
+          <div class="flex items-center gap-2 text-red-700 font-black text-xs uppercase">
+            <span class="w-6 h-6 rounded-lg bg-red-700 text-white flex items-center justify-center text-xs">10</span>
+            Bẫy 10: Phân biệt Cố ý gián tiếp vs Vô ý vì quá tự tin
+          </div>
+          <div class="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-950 space-y-1">
+            <strong>Cách đề thi gài bẫy:</strong> Cho tình huống giăng điện trần bẫy chuột/chống trộm và tình huống vượt lũ/vượt đèn đỏ rồi hỏi loại lỗi.
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            <strong class="text-emerald-700">✓ Mẹo nhớ đúng:</strong><br>
+            • <em>Cố ý gián tiếp:</em> Không mong muốn nhưng <strong>CÓ Ý THỨC ĐỂ MẶC</strong> cho hậu quả xảy ra (chết ai thì chết, không quan tâm).<br>
+            • <em>Vô ý vì quá tự tin:</em> <strong>TIN TƯỞNG NGĂN CHẶN ĐƯỢC</strong> hoặc tin rằng hậu quả sẽ không xảy ra (hoàn toàn không chấp nhận/không để mặc hậu quả).
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- RESULT & SCOREBOARD MODAL -->
+  <div id="modal-result" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden no-print">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100 animate-scaleUp">
+      
+      <!-- Modal Header -->
+      <div class="text-center space-y-2">
+        <div class="w-16 h-16 rounded-full bg-red-50 text-red-700 mx-auto flex items-center justify-center text-3xl font-black shadow-inner">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <h3 class="text-xl font-black text-slate-900">KẾT QUẢ THI KẾT THÚC HỌC PHẦN</h3>
+        <p id="res-exam-code" class="text-xs text-slate-500 font-semibold uppercase tracking-wider">ĐỀ THI: HUST-KTPH-401</p>
+      </div>
+
+      <!-- Score Box -->
+      <div class="bg-gradient-to-br from-red-50 to-amber-50 p-6 rounded-2xl border border-red-200/70 text-center space-y-2">
+        <div class="text-xs font-bold uppercase text-slate-500">Điểm số quy đổi chuẩn Bách Khoa</div>
+        <div class="flex items-center justify-center gap-3">
+          <div id="res-score-10" class="text-4xl sm:text-5xl font-black text-red-700">8.8</div>
+          <div class="text-left">
+            <span id="res-grade-letter" class="px-3 py-1 rounded-lg bg-red-700 text-white font-black text-xl">A</span>
+            <div id="res-grade-text" class="text-xs font-bold text-red-800 mt-1">Học lực Giỏi</div>
+          </div>
+        </div>
+        <p id="res-score-detail" class="text-xs text-slate-600 font-medium pt-1">
+          Đúng: 44 / 50 câu • Sai: 6 câu • Thời gian làm bài: 38:20
+        </p>
+      </div>
+
+      <!-- Chapter-by-Chapter Analytics (tailieuhust style) -->
+      <div class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left">
+        <div class="flex items-center justify-between text-xs font-black text-slate-800 uppercase tracking-wide">
+          <span><i class="fa-solid fa-chart-pie text-red-700"></i> Phân tích tỷ lệ đúng theo 7 Chương học phần:</span>
+          <span class="text-[11px] text-slate-500 font-normal">Chuẩn ma trận HUST</span>
+        </div>
+        <div id="modal-chapter-breakdown" class="space-y-2 text-xs">
+          <!-- Dynamically populated via app.js -->
+        </div>
+        <div id="modal-exam-advice" class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950 font-medium leading-relaxed">
+          <!-- Personalized study advice -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center gap-2.5 pt-2">
+        <button id="btn-retry-mistakes-now" class="w-full sm:flex-1 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-xs transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-bolt"></i> Luyện Lại Các Câu Làm Sai Ngay
+        </button>
+        <button id="btn-close-modal-review" class="w-full sm:flex-1 py-3 bg-red-700 hover:bg-red-800 text-white font-black text-xs sm:text-sm rounded-xl shadow-xs transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-magnifying-glass"></i> Xem Lại Chi Tiết
+        </button>
+        <button id="btn-modal-new-exam" class="w-full sm:w-auto px-5 py-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm rounded-xl transition flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-rotate-right"></i> Thi Đề Khác
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <div class="flex items-center justify-center gap-2 font-bold text-slate-700">
+        <i class="fa-solid fa-graduation-cap text-red-700"></i> ĐẠI HỌC BÁCH KHOA HÀ NỘI — KHOA LÝ LUẬN CHÍNH TRỊ
+      </div>
+      <p class="text-slate-400">
+        Phần mềm ôn thi trắc nghiệm học phần Pháp luật đại cương (SSH1131 / SSH1130 / EM3211) • Dữ liệu chuẩn hóa 7 chương
+      </p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="hust-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/95 text-white px-5 py-3 rounded-2xl shadow-2xl z-50 text-xs sm:text-sm font-semibold flex items-center gap-2 border border-slate-700 transition-all duration-300 transform pointer-events-none opacity-0 translate-y-3"></div>
+
+  <!-- DATASETS -->
+  <script src="data.js"></script>
+  <script src="data_bank.js"></script>
+  <!-- APPLICATION LOGIC -->
+  <script src="app.js"></script>
+</body>
+</html>

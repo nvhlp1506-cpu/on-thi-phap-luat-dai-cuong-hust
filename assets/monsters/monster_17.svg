@@ -1,0 +1,26 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_17.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#1f2937'/>
+      <stop offset='100%' stop-color='#030712'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_17.svg)'/>
+  
+      <!-- Skull Hood / Reaper Mantle -->
+      <path d='M45,70 Q100,25 155,70 L165,145 L35,145 Z' fill='#111827' stroke='#374151' stroke-width='3'/>
+      <!-- Skull Face -->
+      <ellipse cx='100' cy='108' rx='38' ry='34' fill='#f3f4f6' stroke='#9ca3af' stroke-width='2'/>
+      <!-- Hollow Eye Sockets -->
+      <ellipse cx='86' cy='102' rx='10' ry='12' fill='#0f172a'/>
+      <ellipse cx='114' cy='102' rx='10' ry='12' fill='#0f172a'/>
+      <!-- Red Glint -->
+      <circle cx='86' cy='102' r='4' fill='#dc2626'/>
+      <circle cx='114' cy='102' r='4' fill='#dc2626'/>
+      <!-- Skull Teeth -->
+      <path d='M85,128 L115,128 M88,124 L88,132 M96,124 L96,132 M104,124 L104,132 M112,124 L112,132' stroke='#4b5563' stroke-width='2'/>
+      <!-- Scythe Blade Silhouette -->
+      <path d='M150,55 Q185,45 180,95 Q165,75 145,75 Z' fill='#e2e8f0' stroke='#cbd5e1' stroke-width='2'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#dc2626' text-anchor='middle'>ẢI 17 • QUỶ DẠ XOA HÌNH SỰ</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_19.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#581c87'/>
+      <stop offset='100%' stop-color='#1e053a'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_19.svg)'/>
+  
+      <!-- Dragon Blood Wings/Crest -->
+      <path d='M40,80 Q10,40 45,35 Q60,60 55,85' fill='#be123c' stroke='#fda4af' stroke-width='2'/>
+      <path d='M160,80 Q190,40 155,35 Q140,60 145,85' fill='#be123c' stroke='#fda4af' stroke-width='2'/>
+      <!-- Sleek Dragon Head -->
+      <polygon points='100,55 140,105 118,145 82,145 60,105' fill='#7e22ce' stroke='#e879f9' stroke-width='3'/>
+      <!-- Glowing Crimson Eyes -->
+      <polygon points='75,98 92,93 85,105' fill='#fb7185'/>
+      <polygon points='125,98 108,93 115,105' fill='#fb7185'/>
+      <circle cx='84' cy='99' r='2' fill='#fff'/>
+      <circle cx='116' cy='99' r='2' fill='#fff'/>
+      <!-- Lightning Sparks -->
+      <path d='M88,125 L94,132 L91,138 M112,125 L106,132 L109,138' stroke='#f43f5e' stroke-width='2' fill='none'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#fb7185' text-anchor='middle'>ẢI 19 • HUYẾT LONG LAO ĐỘNG</text>
+</svg>

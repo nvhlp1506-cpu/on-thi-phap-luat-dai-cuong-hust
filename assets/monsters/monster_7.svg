@@ -1,0 +1,36 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+      <defs>
+        <radialGradient id='bg7' cx='50%' cy='50%' r='70%'>
+          <stop offset='0%' stop-color='#450a0a'/>
+          <stop offset='50%' stop-color='#2e0854'/>
+          <stop offset='100%' stop-color='#05000a'/>
+        </radialGradient>
+        <linearGradient id='goldCrown' x1='0' y1='0' x2='1' y2='1'>
+          <stop offset='0%' stop-color='#fde047'/>
+          <stop offset='50%' stop-color='#eab308'/>
+          <stop offset='100%' stop-color='#854d0e'/>
+        </linearGradient>
+      </defs>
+      <rect width='200' height='200' rx='28' fill='url(#bg7)'/>
+      <!-- Fiery Aura -->
+      <circle cx='100' cy='100' r='70' fill='#dc2626' opacity='0.3' filter='blur(15px)'/>
+      <!-- Majestic Dark Horns -->
+      <path d='M60,70 C15,30 20,0 55,5 C60,25 65,50 75,68 Z' fill='#0f172a' stroke='#f59e0b' stroke-width='2'/>
+      <path d='M140,70 C185,30 180,0 145,5 C140,25 135,50 125,68 Z' fill='#0f172a' stroke='#f59e0b' stroke-width='2'/>
+      <!-- Overlord Crown -->
+      <polygon points='65,55 75,30 88,48 100,20 112,48 125,30 135,55' fill='url(#goldCrown)' stroke='#78350f' stroke-width='1.5'/>
+      <circle cx='100' cy='36' r='4' fill='#ef4444'/>
+      <circle cx='75' cy='42' r='3' fill='#38bdf8'/>
+      <circle cx='125' cy='42' r='3' fill='#38bdf8'/>
+      <!-- Armor Mask / Skull Face -->
+      <polygon points='65,65 135,65 150,115 130,155 100,165 70,155 50,115' fill='#18181b' stroke='#dc2626' stroke-width='3'/>
+      <!-- Glowing Crimson Demon Eyes -->
+      <polygon points='72,95 94,102 88,110 68,102' fill='#ef4444' filter='drop-shadow(0 0 8px #dc2626)'/>
+      <polygon points='128,95 106,102 112,110 132,102' fill='#ef4444' filter='drop-shadow(0 0 8px #dc2626)'/>
+      <circle cx='82' cy='103' r='2' fill='#fff'/>
+      <circle cx='118' cy='103' r='2' fill='#fff'/>
+      <!-- Giant F emblem on chest/chin -->
+      <rect x='92' y='125' width='16' height='22' rx='3' fill='#dc2626'/>
+      <text x='100' y='142' font-family='sans-serif' font-weight='900' font-size='16' fill='#fff' text-anchor='middle'>F</text>
+      <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='12' fill='#ef4444' text-anchor='middle'>TRÙM CUỐI • MA VƯƠNG ĐIỂM F</text>
+    </svg>

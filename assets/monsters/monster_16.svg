@@ -1,0 +1,23 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_16.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#450a0a'/>
+      <stop offset='100%' stop-color='#180202'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_16.svg)'/>
+  
+      <!-- Flame Crown -->
+      <path d='M55,80 Q70,30 85,65 Q100,15 115,65 Q130,30 145,80 Z' fill='#f97316' stroke='#fef08a' stroke-width='3'/>
+      <!-- Lava Core Head -->
+      <ellipse cx='100' cy='110' rx='48' ry='44' fill='#ea580c' stroke='#fed7aa' stroke-width='3'/>
+      <!-- Cracks of Magma -->
+      <path d='M75,95 L90,115 L80,135 M125,95 L110,115 L120,135' stroke='#fef08a' stroke-width='3' fill='none'/>
+      <!-- Blazing Eyes -->
+      <ellipse cx='82' cy='105' rx='9' ry='11' fill='#fef08a'/>
+      <ellipse cx='118' cy='105' rx='9' ry='11' fill='#fef08a'/>
+      <circle cx='82' cy='105' r='4' fill='#b91c1c'/>
+      <circle cx='118' cy='105' r='4' fill='#b91c1c'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#fef08a' text-anchor='middle'>ẢI 16 • VIÊM MA HÀNH CHÍNH</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+  <defs>
+    <radialGradient id='bg_monster_15.svg' cx='50%' cy='50%' r='70%'>
+      <stop offset='0%' stop-color='#451a03'/>
+      <stop offset='100%' stop-color='#1c0a01'/>
+    </radialGradient>
+  </defs>
+  <rect width='200' height='200' rx='28' fill='url(#bg_monster_15.svg)'/>
+  
+      <!-- Sphinx Nemes Headdress -->
+      <path d='M50,70 Q100,40 150,70 L165,130 L140,135 L130,85 L70,85 L60,135 L35,130 Z' fill='#d97706' stroke='#fde68a' stroke-width='3'/>
+      <!-- Golden Face -->
+      <ellipse cx='100' cy='105' rx='35' ry='38' fill='#fbbf24' stroke='#92400e' stroke-width='2'/>
+      <!-- Blue Kohl Eyes -->
+      <ellipse cx='86' cy='102' rx='8' ry='6' fill='#fff'/>
+      <ellipse cx='114' cy='102' rx='8' ry='6' fill='#fff'/>
+      <circle cx='86' cy='102' r='4' fill='#0284c7'/>
+      <circle cx='114' cy='102' r='4' fill='#0284c7'/>
+      <path d='M76,102 L96,102 M104,102 L124,102' stroke='#0369a1' stroke-width='2'/>
+      <!-- Pharaoh Beard -->
+      <rect x='94' y='138' width='12' height='22' fill='#1e293b' stroke='#fbbf24' stroke-width='2'/>
+    
+  <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='10' fill='#38bdf8' text-anchor='middle'>ẢI 15 • SA THẦN SHARIA</text>
+</svg>

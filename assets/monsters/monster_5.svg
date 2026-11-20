@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+      <defs>
+        <radialGradient id='bg5' cx='50%' cy='50%' r='70%'>
+          <stop offset='0%' stop-color='#450a0a'/>
+          <stop offset='100%' stop-color='#170202'/>
+        </radialGradient>
+        <linearGradient id='demonSkin' x1='0' y1='0' x2='0' y2='1'>
+          <stop offset='0%' stop-color='#ef4444'/>
+          <stop offset='100%' stop-color='#7f1d1d'/>
+        </linearGradient>
+      </defs>
+      <rect width='200' height='200' rx='28' fill='url(#bg5)'/>
+      <!-- Giant Obsidian Curved Horns -->
+      <path d='M65,75 C30,40 25,10 50,15 C55,35 65,55 75,70 Z' fill='#1c1917' stroke='#991b1b' stroke-width='2'/>
+      <path d='M135,75 C170,40 175,10 150,15 C145,35 135,55 125,70 Z' fill='#1c1917' stroke='#991b1b' stroke-width='2'/>
+      <!-- Demon Head -->
+      <polygon points='60,80 140,80 155,125 100,165 45,125' fill='url(#demonSkin)'/>
+      <!-- Fiery Eyes -->
+      <polygon points='70,100 92,106 88,114 68,106' fill='#facc15' filter='drop-shadow(0 0 6px #ea580c)'/>
+      <polygon points='130,100 108,106 112,114 132,106' fill='#facc15' filter='drop-shadow(0 0 6px #ea580c)'/>
+      <circle cx='80' cy='107' r='3' fill='#450a0a'/>
+      <circle cx='120' cy='107' r='3' fill='#450a0a'/>
+      <!-- Snarl & Huge Fangs -->
+      <path d='M75,130 Q100,145 125,130 Q100,155 75,130 Z' fill='#0f172a'/>
+      <polygon points='82,130 87,144 92,130' fill='#fff'/>
+      <polygon points='108,130 113,144 118,130' fill='#fff'/>
+      <polygon points='96,146 100,132 104,146' fill='#fff'/>
+      <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='12' fill='#f87171' text-anchor='middle'>ẢI 5 • TÀ THẦN TRỌNG TỘI</text>
+    </svg>

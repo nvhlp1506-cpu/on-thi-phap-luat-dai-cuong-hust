@@ -1,0 +1,41 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='200' height='200'>
+      <defs>
+        <radialGradient id='bg1' cx='50%' cy='50%' r='70%'>
+          <stop offset='0%' stop-color='#3b2a0c'/>
+          <stop offset='100%' stop-color='#120a02'/>
+        </radialGradient>
+        <radialGradient id='skin1' cx='40%' cy='40%' r='60%'>
+          <stop offset='0%' stop-color='#84cc16'/>
+          <stop offset='70%' stop-color='#4d7c0f'/>
+          <stop offset='100%' stop-color='#1f3f04'/>
+        </radialGradient>
+      </defs>
+      <rect width='200' height='200' rx='28' fill='url(#bg1)'/>
+      <!-- Ears -->
+      <polygon points='25,95 70,75 55,120' fill='#4d7c0f'/>
+      <polygon points='175,95 130,75 145,120' fill='#4d7c0f'/>
+      <polygon points='30,95 65,82 55,115' fill='#f472b6' opacity='0.7'/>
+      <polygon points='170,95 135,82 145,115' fill='#f472b6' opacity='0.7'/>
+      <!-- Head -->
+      <ellipse cx='100' cy='110' rx='55' ry='48' fill='url(#skin1)'/>
+      <!-- Brow -->
+      <path d='M65,95 Q100,108 135,95' fill='none' stroke='#1f3f04' stroke-width='6' stroke-linecap='round'/>
+      <!-- Eyes -->
+      <ellipse cx='80' cy='105' rx='10' ry='12' fill='#fef08a'/>
+      <ellipse cx='120' cy='105' rx='10' ry='12' fill='#fef08a'/>
+      <circle cx='80' cy='105' r='5' fill='#dc2626'/>
+      <circle cx='120' cy='105' r='5' fill='#dc2626'/>
+      <circle cx='78' cy='102' r='2' fill='#fff'/>
+      <circle cx='118' cy='102' r='2' fill='#fff'/>
+      <!-- Nose -->
+      <polygon points='100,110 93,124 107,124' fill='#365314'/>
+      <!-- Mouth & Fangs -->
+      <path d='M75,135 Q100,155 125,135 Z' fill='#450a0a'/>
+      <polygon points='82,135 87,143 92,135' fill='#f8fafc'/>
+      <polygon points='108,135 113,143 118,135' fill='#f8fafc'/>
+      <polygon points='95,148 100,138 105,148' fill='#f8fafc'/>
+      <!-- War paint / spikes -->
+      <path d='M60,115 L70,125' stroke='#ef4444' stroke-width='3' stroke-linecap='round'/>
+      <path d='M140,115 L130,125' stroke='#ef4444' stroke-width='3' stroke-linecap='round'/>
+      <text x='100' y='185' font-family='sans-serif' font-weight='900' font-size='12' fill='#facc15' text-anchor='middle'>ẢI 1 • GOBLIN VÔ KỶ LUẬT</text>
+    </svg>
